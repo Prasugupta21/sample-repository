@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+   {
+	int n;
+
+
+	int sum1=0;
+	int min1,min2,max1,max2;
+	
+	int g,p;
+	cin>>g>>p;
+    cin >> n;
+
+	int sum2=0;
+	
+	int a[n][2];
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			cin>>a[i][j];
+		}
+	}
+    for(int i=0;i<n;i++)
+    {
+        	sum1+=a[i][0];
+			sum2+=a[i][1];
+
+    }
+	if(g<p)
+	{
+		min1=g;
+		max1=p;
+	}
+	else
+	{
+		min1=p;
+		max1=g;
+	}
+	if(sum1>sum2)
+	{
+		min2=sum2;
+		max2=sum1;
+	}
+	else
+	{
+		min2=sum1;
+		max2=sum2;
+	}
+	
+	cout<<((min1*max2)+(max1*min2))<<endl;
+   }
+	return 0;
+}

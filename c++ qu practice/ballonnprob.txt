@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+   {
+
+
+
+	int sum1=0;
+	
+	int g,p;
+	cin>>g>>p;
+    int n;
+    cin >> n;
+
+	int sum2=0;
+	
+	int a[n][2];
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			cin>>a[i][j];
+			
+		}
+	}
+    for(int i=0;i<n;i++)
+    {
+        if(a[i][0]==1)
+        {
+            sum1+=g;
+        }
+        if(a[i][1]==1)
+        {
+            sum1+=p;
+        }
+    }
+        for(int i=0;i<n;i++)
+    {
+        if(a[i][0]==1)
+        {
+            sum2+=p;
+        }
+        if(a[i][1]==1)
+        {
+            sum2+=g;
+        }
+    }
+    if(sum1<sum2)
+    {
+        cout<<sum1<<endl;
+    }
+    else
+    {
+     cout<<sum2<<endl;
+
+    }
+
+
+   }
+   return 0;
+}
+	

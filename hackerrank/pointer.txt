@@ -1,0 +1,28 @@
+#include<iostream>
+
+using namespace std;
+ void modify(int *p,int *q)
+{
+    int sum,absdiff;
+    sum=(*p)+(*q);
+    if((*p)-(*q)<0)
+    {
+       absdiff=(*q)-(*p);
+    }
+    else {
+    absdiff=-((*q)-(*p));
+    }
+    *p=sum;
+    *q=absdiff;
+}
+ int main()
+ {
+     int a;
+     int b;
+     cin>>a>>b;
+     int *p=&a;
+     int *q=&b;
+     modify(p,q);
+     cout<<*p<<endl;
+     cout<<*q<<endl;
+ }

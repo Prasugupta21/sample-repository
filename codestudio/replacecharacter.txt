@@ -1,0 +1,28 @@
+void replaceCharacter(char input[], char c1, char c2) {
+ 
+	int i=0,j=0;
+	while((input[i]!='\0')&&(input[j]!='\0'))
+	{
+		if(input[i]==c1)
+		{
+			
+			input[j]=c2;
+			
+		}
+		
+		i++;
+		j++;
+	}
+		  while((input[j]!='\0'))
+		  {
+			  cout<<input[j];
+		  }
+	
+
+
+	
+	
+		
+		
+	
+}

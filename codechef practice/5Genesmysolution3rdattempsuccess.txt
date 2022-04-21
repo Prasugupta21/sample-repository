@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	char x,y;
+	cin>>x>>y;
+	if(((x=='R')&&(y=='G'))||((x=='G')&&(y=='R'))||((x=='R')&&(y=='R'))||((x=='R')&&(y=='B'))||((x=='B')&&(y=='R')))
+	{
+	    cout<<"R"<<endl;
+	}
+
+	else if(((x=='G')&&(y=='B'))||((x=='B')&&(y=='G'))||((x=='B')&&(y=='B')))
+	{
+	    cout<<"B"<<endl;
+	}
+	else
+	{
+	     cout<<"G"<<endl;
+	}
+	return 0;
+}

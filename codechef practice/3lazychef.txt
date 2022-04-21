@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int t;
+    cin>>t;
+    int x,m,d;
+    while(t--)
+    {
+        cin>>x>>m>>d;
+        int a=m*x;
+        int b=x+d;
+        (a>b)?cout<<b<<endl:cout<<a<<endl;
+    }
+
+	return 0;
+}

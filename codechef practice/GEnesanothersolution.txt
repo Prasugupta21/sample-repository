@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	char x,y;
+	cin>>x>>y;
+	if(x==y)cout<<x<<endl;
+	else if((x=='G' && y=='B'))cout<<y<<endl;
+	else if((y=='G' && x=='B'))cout<<x<<endl;
+	else cout<<'R'<<endl;
+	return 0;
+}
+

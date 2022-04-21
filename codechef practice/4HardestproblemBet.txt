@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+void min(int x,int y,int z)
+{
+    if((x<y)&&(x<z))
+     {
+         cout<<"Draw"<<endl;
+     }
+     else if(y<z)
+     {
+         cout<<"Bob"<<endl;
+     }
+     else
+     {
+                  cout<<"Alice"<<endl;
+
+     }
+}
+
+int main() {
+int t;
+cin>>t;
+while(t--)
+{
+    int x,y,z;
+    cin>>x>>y>>z;
+    min(x,y,z);
+}
+	return 0;
+}

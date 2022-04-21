@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	char c1,c2;
+	cin>>c1>>c2;
+	
+	if(c1==c2){
+	    cout<<c1<<endl;
+	}
+	else if(c1 !=c2 && (c1=='R' || c2 =='R')){     //here ye line isi sequence me aayegi coz hme R print krna h ydi at least one R aaya and another character B aaya to phle 2nd condition follow hogi after this hi B print hoga
+ 
+	    cout<<"R"<<endl;
+	}
+	else if(c1 !=c2 && (c1=='B' || c2=='B')){
+	    cout<<"B"<<endl;
+	}
+	return 0;
+}

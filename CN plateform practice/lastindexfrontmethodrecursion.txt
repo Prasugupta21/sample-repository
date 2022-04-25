@@ -1,0 +1,28 @@
+int lastIndex(int input[], int size, int x) {
+ if(size==0)
+    {
+       return -1;
+    }
+    int p=lastIndex(input+1,size-1,x);
+          
+  
+    
+ 
+if(p==-1)
+{
+     if(input[0]==x)
+    {
+        return 0;
+    }
+    else{
+
+    
+    return -1;
+    }
+
+}
+    else
+{
+    return p+1;
+}
+}

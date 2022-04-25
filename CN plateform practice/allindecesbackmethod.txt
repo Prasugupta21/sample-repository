@@ -1,0 +1,49 @@
+
+#include<iostream>
+using namespace std;
+void printarr(int input[],int k,int output[])
+{
+   
+    
+for(int i=0;i<k;i++)
+{
+    cout<<output[i]<<" ";
+}
+}
+int allIndexes(int input[], int size, int x, int output[]) {
+  /* Don't write main().
+     Don't read input, it is passed as function argument.
+     Save all the indexes in the output array passed and return the size of output array.
+     Taking input and printing output is handled automatically.
+  */
+ if(size==0)
+ {
+     return 0;
+ }
+
+   int p=   allIndexes(input,size-1,x,output);
+  
+ if (input[size-1]==x)
+    
+{    
+    output[p]=size-1;
+     return p+1;
+
+
+}
+    else
+    {
+        return p;
+    }
+}
+int main()
+{
+    int input[]={5,6,5,6,3,2};
+    int x;
+    cin>>x;
+    int output[6];
+    int y=allIndexes(input,6, x, output);
+    cout<<y<<endl;
+    printarr( input,y,output);
+        
+}

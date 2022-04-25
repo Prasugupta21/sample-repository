@@ -1,0 +1,11 @@
+int count(int n){
+
+ if(n==0)
+ {
+     return 0 ;
+}
+    int p=count(n/=10);
+     int c   =p+1;
+//     here i have taken total digits = p+1 coz i am giving recursion to deal n-1 digits and last one digit left that i will deal so total digits are p+1
+     return c;
+}

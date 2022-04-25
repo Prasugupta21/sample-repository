@@ -1,0 +1,39 @@
+#include<string.h>
+
+bool helper(char input[],int start,int e)
+{
+    int t;
+     if((e+1==0)||(e+1==1))
+   {
+       return true;
+   }
+  
+     if(input[start]!=input[e])
+    {
+       return false; 
+    }
+ 
+    
+       t=helper(input,start+1,e-1);
+    
+    return t;
+    
+}
+
+
+bool checkPalindrome(char input[]) {
+    
+  
+    int x=strlen(input);
+  
+   
+    
+       
+      int y=  helper(input,0,x-1);
+        return y;
+    
+    // Write your code here
+
+}
+
+

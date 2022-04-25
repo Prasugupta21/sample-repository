@@ -1,0 +1,14 @@
+double geometricSum(int k) {
+  
+if(k==0)
+{
+    return 1;
+}
+    double p=geometricSum(k-1);
+ double ans=p/2.0;
+double s=ans +1;
+    return s;
+    
+}
+
+

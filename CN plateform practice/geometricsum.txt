@@ -1,0 +1,14 @@
+double geometricSum(int k) {
+  
+if(k==0)
+{
+    return 1;
+}
+    double p=geometricSum(k-1);
+ double ans=pow(.5,k)+p;
+    ans.setpre
+    return ans;
+    
+}
+
+

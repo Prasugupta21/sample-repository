@@ -1,0 +1,68 @@
+
+void merge(int input[],int s,int e,int mid)
+{
+  
+   int x=e-s+1;
+      int b[x];
+    int i,j;
+   i=s,j=mid+1;
+    
+    
+
+  
+    int k=0;
+  
+    while((i<=mid)&&(j<=e))
+	{
+		if(input[j]<input[i])
+		{
+			b[k++]=input[j++];
+		}
+		else 
+		{
+		b[k++]=input[i++];
+		}
+		
+	}
+	while(i<=mid)
+	{
+		b[k++]=input[i++];
+	}
+	while(j<=e)
+	{
+		b[k++]=input[j++];
+	}
+    for(int i=s;i<=e;i++)
+    {
+        input[i]=b[i-s];
+    }
+
+}
+
+void mergesort(int input[],int s,int e)
+{
+    
+     
+    if(s>=e)
+    {
+        return;
+    }
+    int mid=(s+e)/2;
+    mergesort(input,s,mid);
+    mergesort(input,mid+1,e);
+    merge(input,s,e,mid);
+    
+    
+}
+
+
+
+
+
+void mergeSort(int input[], int size){
+   if((size==0)||(size==1))
+        {
+            return;
+        }
+       mergesort(input,0,size-1);
+}

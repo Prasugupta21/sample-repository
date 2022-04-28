@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+
+
+void merge(int a[],int s,int e,int mid)
+{
+    int n=e-s+1;
+    int *output=new int [n];
+    int i=s,j=mid+1,k=0;
+    while((i<=mid)&&(j<=e))
+    {
+        if(a[i]<a[j])
+        {
+            output[k++]=a[i++];
+        }
+        else
+        {
+            output[k++]=a[j++];
+        }
+
+    }
+    while(i<=mid)
+    {
+         output[k++]=a[i++];
+    }
+    while(j<=e)
+    {
+        output[k++]=a[j++];
+    }
+    int z=0;
+    for(int i=s;i<=e;i++)
+    {
+        a[i]=output[z];
+        z++;
+    }
+    delete []output;
+
+}
+void mergesort(int a[],int s,int e)
+{
+    if(s>=e)
+    {
+        return ;
+
+    }
+    int mid =(s+e)/2;
+    mergesort(a,s,mid);
+    mergesort(a,mid+1,e);
+    merge(a,s,e,mid);
+
+}
+int main()
+{
+    int a[]={3,1,65,43,32};
+    mergesort(a,0,4);
+    for(int i=0;i<5;i++)
+    {
+        cout<<a[i]<<" ";
+    }
+   
+   return 0;
+}

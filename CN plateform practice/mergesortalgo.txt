@@ -1,0 +1,74 @@
+
+void merge(int input[],int s,int e,int mid)
+{
+    int b[e+1];
+    int x=mid-s+1;
+    int y=e-mid;
+    int p[x],q[y];
+    int i,j;
+    for( i=0;i<x;i++)
+    {
+        p[i]=input[s+i];
+    }
+      for( j=0;j<y;j++)
+    {
+        q[j]=input[mid+1+j];
+    }
+    
+
+     i=0,j=0;
+    int k=s;
+    while((i<x)&&(j<y))
+	{
+		if(p[i]>q[j])
+		{
+			b[k++]=q[j++];
+		}
+		else 
+		{
+			b[k++]=p[i++];//here in all the cases i can also taken input[k++]=p[i++] and so i can write here for all b[k++] ko input[k++]
+                                 kr skta tha then i dont need to copy array b into arr input it is better method than this
+		}
+		
+	}
+	while(i<x)
+	{
+		b[k++]=p[i++];
+	}
+	while(j<y)
+	{
+		b[k++]=q[j++];
+	}
+for( i=s;i<=e;i++)
+{
+    input[i]=b[i];
+}
+}
+
+void mergesort(int input[],int s,int e)
+{
+    
+     
+    if(s>=e)
+    {
+        return;
+    }
+    int mid=(s+e)/2;
+    mergesort(input,s,mid);
+    mergesort(input,mid+1,e);
+    merge(input,s,e,mid);
+    
+    
+}
+
+
+
+
+
+void mergeSort(int input[], int size){
+   if((size==0)||(size==1))
+        {
+            return;
+        }
+       mergesort(input,0,size-1);
+}

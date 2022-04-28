@@ -1,0 +1,86 @@
+#include<iostream>
+
+using namespace std;
+ string getString(int d)
+ {
+     if(d==2)
+     {
+         return "abc";
+     }
+     else if(d==3)
+    {
+        return "def";
+    }
+     else if(d==3)
+    {
+        return "def";
+    }
+     else if(d==4)
+    {
+        return "ghi";
+    }
+     else if(d==5)
+    {
+        return "jkl";
+    }
+     else if(d==6)
+    {
+        return "mno";
+    }
+     else if(d==7)
+    {
+        return "pqrs";
+    }
+     else if(d==8)
+    {
+        return "tuv";
+    }
+     else if(d==9)
+    {
+        return "wxyz";
+    }
+    return " ";
+ }
+int keypad (int n,string output[])
+{
+ if(n==0)
+ {
+     output[0]=" ";
+     return 1;
+ }
+ int rem=n%10;
+ int smallnum=n/10;
+ int smalloutputsize=keypad(smallnum,output);
+ string option= getString(rem);
+ for(int i=0;i<option.length()-1;i++)
+ {
+     for(int j=0;j<smalloutputsize;j++)
+     {
+         output[j+(i+1)*smalloutputsize]=output[j];
+     }
+ }
+ int m=0;
+ for(int i=0;i<option.length();i++)
+ {
+     for(int j=0;j<smalloutputsize;j++)
+     {
+         output[m]+=option[i];
+         m++;
+     }
+ }
+ return smalloutputsize * option.length();
+
+}
+int main()
+{
+   int n;
+   cin>>n;
+   string *output=new string [1000];
+   int x=keypad(n,output);
+   for(int i=0;i<x;i++)
+   {
+       cout<<output[i]<<endl;
+   }
+
+   return 0;
+}

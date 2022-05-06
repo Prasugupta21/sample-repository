@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+int t;
+cin>>t;
+int c1=0,c2=0;
+while(t--)
+{
+    int a[7];
+    for(int i=0;i<7;i++)
+    {
+        cin>>a[i];
+    }
+       for(int i=0;i<7;i++)
+    {
+       (a[i]==1)?c1++:c2++;
+    }
+    (c1>c2)?cout<<"Yes"<<endl:cout<<"No"<<endl;//here in this programme i only write c1=0 and according to condition c1++ and if(c1>3) yes, else no
+    c1=0;
+    c2=0;
+    
+}
+	return 0;
+}

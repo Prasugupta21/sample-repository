@@ -1,0 +1,19 @@
+#include<string.h>
+#include<cmath>
+
+
+int stringToNumber(char input[]) {
+  
+if(strlen(input)==1)
+{
+    int b=input[0]-'0';
+    return b;
+}
+   int a= stringToNumber(input+1);
+    int c=input[0]-'0';
+    int x=strlen(input);
+    int d=pow(10,x-1)*c+a;
+    return d;
+}
+
+

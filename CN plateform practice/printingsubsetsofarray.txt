@@ -1,0 +1,40 @@
+#include<cmath>
+
+void printSubsetsOfArrayhelper(int input[],int n,int output [],int m)
+{
+    int i=0;
+    if(n==0)
+    {
+        for(int i=0;i<m;i++)
+        {
+        cout<<output[i]<<" ";
+      
+    }
+    
+        cout<<endl;
+          return;
+    }
+        
+    
+    printSubsetsOfArrayhelper(input+1,n-1,output,m);
+   
+ 
+        int  smallout[15];
+        for(i=0;i<m;i++)
+        {
+            smallout[i]=output[i];
+        }
+        smallout[i]=input[0];
+    
+      printSubsetsOfArrayhelper(input+1,n-1,smallout,m+1);
+    
+    
+    
+}
+
+void printSubsetsOfArray(int input[], int size) {
+	// Write your code here
+    int x=pow(2,size);
+int output[x];
+    printSubsetsOfArrayhelper(input,size,output,0);
+}

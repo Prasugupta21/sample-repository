@@ -1,0 +1,22 @@
+// Change in the given string itself. So no need to return or print anything
+#include<string.h>
+void removeX(char input[]) {
+    // Write your code here
+if(strlen(input)==0) // here i also write input[0]==0 in condition of if but not write y==0 where y=strlen(input)
+{
+    return;
+}
+    removeX(input+1);
+    if(input[0]=='x')
+    {
+// in this line i can initialize y=
+        for(int i=1;i<=strlen(input);i++) but here i can write i<=y; y ko func ke start me hi declare kr skte;
+        {
+            input[i-1]=input[i];
+        }
+    }
+    else
+    {
+        return ;
+    }
+}

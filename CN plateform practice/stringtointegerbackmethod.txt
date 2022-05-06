@@ -1,0 +1,28 @@
+#include<string.h>
+#include<cmath>
+
+
+int stringToNumber(char input[],int last) {
+        
+   if(last==0)
+   {
+      int b=input[last]-'0';
+       return b;
+   }
+    int y=stringToNumber(input,last-1);
+    int a=input[last]-'0';
+    int c=y*10+a;
+    return c;
+    
+}
+
+int stringToNumber(char input[]) {
+  
+int x=strlen(input);
+ int p=   stringToNumber(input,x-1);
+    return p;
+    
+    
+}
+
+

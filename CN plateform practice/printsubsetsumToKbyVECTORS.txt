@@ -1,0 +1,36 @@
+#include<vector>
+
+void printHelper(int input[],int n,vector <int> v,int k)
+{
+    
+         
+
+    if(n==0)
+    {
+        if(k==0)
+        {
+            for(int i=v.size()-1;i>=0;i--)
+            {
+                cout<<v[i]<<" ";
+                
+            }
+            cout<<endl;
+            return;
+        }
+        else
+        {
+            return ;
+        }
+    }
+    printHelper(input,n-1,v,k);
+    v.push_back(input[n-1]);
+    printHelper(input,n-1,v,k-input[n-1]);
+    
+}
+
+
+void printSubsetSumToK(int input[], int size, int k) {
+    // Write your code here
+    vector<int>v;
+    printHelper(input,size,v,k);
+}

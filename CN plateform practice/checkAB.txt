@@ -1,0 +1,34 @@
+
+
+bool checkAB(char input[],int start)
+{
+    if(input[start]=='\0')
+    {
+        return true;
+    }
+    if(input[start]!='a')
+    {
+        return false;
+    }
+    if(input[start+1]=='b'&&input[start+2]=='b')
+    {
+       int z =checkAB(input,start+3);
+        return z;
+    }
+    else
+    {
+        int p=checkAB(input,start+1);
+        return p;
+    }
+        
+}
+
+
+bool checkAB(char input[]) {
+	// Write your code here
+  int y=checkAB(input,0);
+      return y;
+}
+
+
+

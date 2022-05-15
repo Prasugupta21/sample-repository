@@ -1,0 +1,11 @@
+void update(int *a,int *b) { // Complete this function
+
+if(*a>*b){
+    *b = *a-*b;
+    *a = *a -*b +*a;
+}
+else {
+    *b = *b-*a;
+    *a = *a + *b + *a;
+}
+}

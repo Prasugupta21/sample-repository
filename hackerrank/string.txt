@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	// Complete the program
+  string s1;
+  string s2;
+  cin>>s1;
+  cin>>s2;
+  int x=s1.size();
+   int y=s2.size();
+   cout<<x<<" "<<y<<endl;
+   string s=s1+s2;
+   cout<<s<<endl;
+   char p=s1[0];
+   s1[0]=s2[0];
+   s2[0]=p;
+   cout<<s1<<" "<<s2<<endl;
+  
+    return 0;
+}

@@ -1,0 +1,34 @@
+#include<iostream>
+
+using namespace std;
+
+void update(int *p,int *q)
+{
+    int a,b;
+    a=(*p)+(*q);
+    b=(*p)-(*q);
+    if((b)<0)
+    {
+        (*q)=-b;
+    }
+    else {
+    *q=b;
+    }
+    *p=a;
+}
+ int main()
+ {
+     int a;
+     int b;
+     cin>>a>>b;
+     int *p,*q;
+     p=&a;
+     q=&b;
+     update(p,q);
+     cout<<*p<<endl;// also write a and b in place of *p and *q respectively in these two lines cout wali
+     cout<<*q<<endl;
+     
+     
+     return 0;
+ }
+  

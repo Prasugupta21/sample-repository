@@ -1,0 +1,58 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+   
+    set<int> s;
+ 
+    int q;
+    cin>>q;
+    while(q>0)
+    {
+        int y,x;
+        cin>>y>>x;
+        if(y==1)
+        {
+            s.insert(x);
+        
+        }
+        else if (y==2)
+        {
+            if(s.find(x)!=s.end())
+            {
+            s.erase(x);
+            }
+           
+        }
+        
+        else {
+            if(s.find(x)!=s.end())
+            {
+                cout<<"Yes"<<endl; 
+            }
+            else
+          {
+               cout<<"No"<<endl;
+          }
+         
+        }
+        q--;
+     
+    }
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+when y=3 hoga tab also i can write
+       set<int>::iterator itr = s.find(x);
+            if (itr != s.end()) cout << "Yes" << endl;
+            //if (*itr == x) cout << "Yes" << endl;
+            else cout << "No" << endl;
+
+

@@ -1,0 +1,246 @@
+
+Practice
+Guided Paths
+Interview Prep
+Challenges
+New
+
+Knowledge Centre
+New
+
+Community
+New
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Join the Discussion
+If your are adding a code snippet insert it under code block
+
+
+
+Krishna Khandal
+|
+Level 6
+22 days ago
+//Best Approach
+
+//follow me in insta 123krrish2001
+
+//time com    O(n);
+
+ 
+
+ 
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+vector<int> removeDuplicates(vector<int> arr) {
+
+unordered_map<int,bool>dup;
+
+vector<int>ans;
+
+int n = arr.size();
+
+ 
+
+ 
+
+for(int i=0;i<n;i++)
+
+{
+
+ if(dup.count(arr[i]))
+
+ {
+
+  continue;
+
+ }
+
+ dup[arr[i]]=true;
+
+ ans.push_back(arr[i]);
+
+}
+
+return ans;
+
+ 
+
+}
+
+ 
+
+
+
+ 
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+ 
+
+ 
+
+vector<int> removeDuplicates(vector<int> arr) {
+
+int n = arr.size();
+
+vector<int>ans;
+
+map<int,bool>seen;
+
+ // Write your code here
+
+for(int i=0;i<n;i++)
+
+{
+
+if(seen.count(arr[i])>0)
+
+{
+
+ continue;
+
+}
+
+else
+
+{
+
+ seen[arr[i]]=true;
+
+ ans.push_back(arr[i]);
+
+}
+
+}
+
+return ans;
+
+}
+
+ 
+
+0 upvotes
+0 replies
+Ajay Nishad
+|
+Level 5
+1 month ago
+
+
+
+
+
+
+
+
+
+
+
+
+0 upvotes
+0 replies
+Shahabuddin Jmi
+|
+Level 5
+1 month ago
+
+
+
+
+
+
+
+
+
+
+
+
+0 upvotes
+0 replies
+Mehul
+|
+Level 6
+9 months ago
+
+
+
+
+
+
+
+
+
+
+
+0 upvotes
+2 replies
+Previous
+Next
+ 
+s.insert(arr[i
+1
+#include<set>
+2
+#include<vector>
+3
+vector<int> removeDuplicates(vector<int> arr) {
+4
+set<int>s;
+5
+    vector<int>v;
+6
+    for(int i=0;i<arr.size();i++)
+7
+    {
+8
+        
+9
+        
+10
+    if(s.find(arr[i])==s.end())
+11
+    {
+12
+        s.insert(arr[i]);
+13
+        v.push_back(arr[i]);
+14
+    }
+15
+        
+16
+    }
+17
+    
+18
+    
+19
+​
+20
+    return v;
+21
+  
+22
+​
+23
+}
+24
+​
+

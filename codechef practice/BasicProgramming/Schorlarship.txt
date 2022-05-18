@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int r;
+	cin>>r;
+	if(r>=1 && r<=50)// only r<=50 also i can write 
+	{
+	    cout<<100<<endl;
+	}
+	else if(r>50 && r<=100) //only r<=100 also i can write
+	{
+	    cout<<50<<endl;
+	    
+	}
+	else
+	{
+	    cout<<0<<endl;
+	}
+	
+	return 0;
+}

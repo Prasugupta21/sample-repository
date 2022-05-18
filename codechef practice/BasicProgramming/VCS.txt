@@ -1,0 +1,48 @@
+#include <iostream>
+#include<map>
+
+using namespace std;
+
+int main() {
+	// your code goes here
+
+	int t;
+	cin>>t;
+	
+		map<int,int>p;// also i can declare it in while loop then  i dont need to use p.clear()
+	while(t--)
+	{
+	    
+	    int n,m,k;
+	    cin>>n>>m>>k;
+	    int a[m],b[k];
+	    int c=0,d=0;
+	    
+	    for(int i=0;i<m;i++)
+	    {
+	        cin>>a[i];
+	        p[a[i]]++;
+	    }
+	        for(int j=0;j<k;j++)
+	    {
+	        cin>>b[j];
+	        p[b[j]]++;
+	    }
+	    for(int v=1;v<=n;v++)
+	    {
+	        if(p[v]==2)
+	        {
+	            c++;
+	        }
+	        
+	         if(p[v]==0)
+	        {
+	            d++;
+	        }
+	    }
+	    cout<<c<<" "<<d<<endl;
+	    p.clear();
+	    
+	}
+	return 0;
+}

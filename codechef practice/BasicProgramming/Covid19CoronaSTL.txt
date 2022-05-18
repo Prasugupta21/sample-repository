@@ -1,0 +1,42 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	
+	while(t--)
+	{
+	    int s=1;
+	    int n;
+	    cin>>n;
+	    vector<int>v;
+	    int a[n];
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>a[i];
+	    }
+	    	    for(int i=0;i<n-1;i++)
+	    {
+	       if(a[i+1]-a[i]<=2)
+	       {
+	           s++;
+	       }
+	       else
+	       {
+	           v.push_back(s);
+	           s=1;
+	       }
+	    }
+	    v.push_back(s);
+	    int x=*min_element(v.begin(),v.end());
+	        int y=*max_element(v.begin(),v.end());
+	        
+	        cout<<x<<" "<<y<<endl;
+	    
+	} 
+	return 0;
+}

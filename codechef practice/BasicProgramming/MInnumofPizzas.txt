@@ -1,0 +1,25 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long n,k;
+	    cin>>n>>k;
+	    
+	      long long z=n*k;
+	      long long p=__gcd(n,k);
+	      
+	   
+	        long long  x=z/p;
+	        long long  y=x/k;
+	        cout<<y<<endl;
+	    
+	}
+	return 0;
+	
+}

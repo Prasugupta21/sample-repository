@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+
+	int t;
+	cin>>t;
+  while(t--)
+  {
+      int n,d,x=0,y=0;
+      cin>>n>>d;
+      int a[n];
+      for(int i=0;i<n;i++)
+      {
+          cin>>a[i];
+      }
+      if(d==1)
+      {
+          cout<<n<<endl;
+      }
+      else
+      {
+      for(int i=0;i<n;i++)
+      {
+          if(a[i]<=9 || a[i]>=80)
+          {
+              x++;
+          }
+          else
+          {
+              y++;
+          }
+      }
+      int z=0;
+      z+=(x/d)+ (y/d);
+      if(x%d)
+      {
+          z++;
+      }
+      if(y%d)
+      {
+          z++;
+      }
+      cout<<z<<endl;
+      }
+  }
+  	return 0; 
+	
+}

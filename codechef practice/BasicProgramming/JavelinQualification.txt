@@ -1,0 +1,55 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,m,x,y,i;
+	    cin>>n>>m>>x;
+	    vector<pair<int,int>>v1;
+	    vector<int>v,v2;
+	   for( i=0;i<n;i++)
+	   {
+	       cin>>y;
+	        v1.push_back(make_pair(y,i+1));
+	       
+	   
+	   }
+	  
+      sort(v1.rbegin(),v1.rend());
+      vector<int>p;
+	    for( i=0;i<n;i++)
+	    {
+	    if((v1[i].first)>=m  || p.size()<x)
+	    {
+	        p.push_back(v1[i].second);
+	    }
+	  
+	    }
+	    
+	    sort(p.begin(),p.end());
+	    int u=p.size();
+	    cout<<u<<" ";
+	    
+	   
+	       
+	    
+	    for(auto i:p)
+	    {
+	        cout<<i<<" ";
+	    }
+	    cout<<endl;
+	    }
+	   
+	   
+	    
+	    
+	    
+	
+	return 0;
+}

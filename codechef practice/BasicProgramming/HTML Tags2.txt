@@ -1,0 +1,53 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	     char c[1000];
+	    cin>>c;
+	    int flag=0;
+	    int x=strlen(c);
+	    if((c[0]=='<'&& c[1]=='/' && c[x-1]=='>') && (x!=3))
+	{
+	    
+	    
+	
+	
+	    
+	        for(int i=2;i<x-1;i++)
+	        {
+	            if(((int)c[i]>=97 && (int)c[i]<=122) ||((int)c[i]>=48 && (int)c[i]<=57))
+	            {
+	               continue;
+	           
+	            }
+	            else
+	            {
+	                flag=1;
+	                break;
+	            }
+	        }
+	        if(flag)
+	    {
+	        cout<<"Error"<<endl;
+	    }
+	    else
+	    {
+	        cout<<"Success"<<endl;
+	    }
+	    
+	    }
+	    else
+	    {
+	           cout<<"Error"<<endl;
+	        
+	    }
+	    
+	}
+	return 0;
+}

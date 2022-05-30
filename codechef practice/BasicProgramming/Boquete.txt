@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	   long long sum1,sum2,max=0;
+	  long long a[3][3];
+	   for(int i=0;i<3;i++)
+	   {
+	       for(int j=0;j<3;j++)
+	       {
+	           cin>>a[i][j];
+	       }
+	   }
+	    for(int i=0;i<3;i++)
+	   {
+	       sum1=0,sum2=0;
+	       for(int j=0;j<3;j++)
+	       {
+	          sum1+=a[i][j];
+	          sum2+=a[j][i];
+	         
+	       }
+	       if(sum1>max)
+	       {
+	           max=sum1;
+	       }
+	        if(sum2>max)
+	       {
+	           max=sum2;
+	       }
+	   }
+	   
+	if(max%2==0)
+	{
+	    if(max>1)
+	    {
+	        cout<<max-1<<endl;
+	    }
+	    else
+	    {
+	        cout<<0<<endl;
+	    }
+	}
+	  else
+	  {
+	   cout<<max<<endl;
+	  }
+	}
+	return 0;
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+
+using namespace std;
+int lpn(int n)
+{
+    int x=1;
+      while(2 * x<=n)
+	    {
+	        x*=2;
+	    }
+	    return x;
+}
+
+int main() {
+	// your code goes here
+	int t; 
+	cin>>t;
+
+	while(t--)
+	{
+	 
+	    
+	    int n;
+	    cin>>n;
+	    
+	    
+	    int x=lpn(n);
+	  
+	    int slpn=x/2;
+	    int a=n-x+1;
+	    int b=x -slpn;
+	    int z=max(a,b);
+	    cout<<z<<endl;
+	    
+	}
+	return 0;
+	
+}

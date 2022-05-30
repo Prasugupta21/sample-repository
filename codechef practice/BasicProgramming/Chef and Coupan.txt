@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int d,c;
+	    int sum1=0,sum2=0;
+	    cin>>d>>c;
+	    int a[3],b[3];
+	    for(int i=0;i<3;i++)
+	    {
+	        cin>>a[i];
+	        sum1+=a[i];
+	    }
+	     for(int i=0;i<3;i++)
+	    {
+	        cin>>b[i];
+	        sum2+=b[i];
+	    }
+	    int x= sum1+sum2+ 2* d;
+	    int y=sum1+sum2+c;
+	    if(sum1>=150  && sum2>=150)
+	    {
+	        if(x>y)
+	        {
+	            cout<<"YES"<<endl;
+	        }
+	        else
+	        {
+	            cout<<"NO"<<endl;
+	        }
+	    }
+	    else if(sum1>=150  || sum2>=150)
+	    {
+	        int z=sum1+sum2+c+d;
+	        if(x>z)
+	        {
+	            cout<<"YES"<<endl;
+	        }
+	       else
+	        {
+	            cout<<"NO"<<endl;
+	        }
+	    }
+	    else
+	    {
+	         cout<<"NO"<<endl;
+	    }
+	    
+	    
+	    
+	}
+		return 0;
+	
+}

@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long c=0;
+	    long long  n,h,y1,y2,l;
+	    cin>>n>>h>>y1>>y2>>l;
+	    while(n--)
+	    {
+	        long long t2,x;
+	        cin>>t2>>x;
+	        if(t2==1)
+	        {
+	          if(h-y1<=x && l>0)
+	          {
+	              c++;
+	          }
+	          else
+	          {
+	             
+	              l--;
+	              if(l>0)
+	              {
+	                  
+	                  c++;
+	              }
+	              
+	          }
+	            
+	        }
+	        else 
+	        {
+	           if(y2>=x && l>0)
+	           {
+	               c++;
+	           }
+	           else
+	           {
+	                  l--;
+	              if(l>0)
+	              {
+	                  
+	                  c++;
+	              }
+	              
+	               
+	           }
+	        }
+	    }
+	          
+	     
+	           
+	           
+	    cout<<c<<endl;
+	}
+	return 0;
+}

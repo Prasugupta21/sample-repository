@@ -1,0 +1,70 @@
+#include <iostream>
+#include<queue>
+#include<utility>
+using namespace std;
+bool isValid(int r,int c)
+{
+    return((r >=1 && r<=8) && (c>=1 && c<=8));
+}
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int r,c,k;
+	   cin>>r>>c>>k;
+	   queue<pair<int,int>>q;
+	   q.push(make_pair(r,c));
+	   int moves[9][9],visited[9][9];
+	   for(int i=1;i<=8;i++)
+	   {
+	       for(int j=1;j<=8;j++)
+	       {
+	           visited[i][j]=0;
+	            moves[i][j]=0;
+	           
+	       }
+	   }
+	   int xm[]={-1,-1,-1,0,0,1,1,1};
+	     int ym[]={-1,0,1,-1,1,-1,0,1};
+	   while(!(q.empty()))
+	   {
+	       pair<int,int>currcell=q.front();
+	       int currrow=currcell.first;
+	       int currcol=currcell.second;
+	       q.pop();
+	       visited[currrow][currcol]=1;
+	       for(int i=0;i<8;i++)
+	       {
+	       int nextx=currrow + xm[i];
+	       int nexty=currcol+ ym[i];
+	       pair<int,int>nextcell=make_pair(nextx,nexty);
+	       if(isValid(nextx,nexty) && visited[nextx][nexty]==0)
+	       {
+	           q.push(nextcell);
+	           visited[nextx][nexty]=1;
+	           moves[nextx][nexty]=moves[currrow][currcol]+1;
+	           
+	       }
+	       }
+	       
+	       
+	   }
+	   int b=0;
+	   for(int i=1;i<=8;i++)
+	   {
+	       for(int j=1;j<=8;j++)
+	       {
+	           if(moves[i][j]<=k)
+	           {
+	               b++;
+	           }
+	       }
+	   }
+	   cout<<b<<endl;
+	   
+	}
+	return 0;
+}

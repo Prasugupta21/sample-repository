@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,m,k;
+	    cin>>n>>m>>k;
+	    int y=m-k;
+	    (y>=n)?cout<<"Yes"<<endl:cout<<"No"<<endl;
+	}
+	return 0;
+}

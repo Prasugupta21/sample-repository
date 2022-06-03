@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t,n,b;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>n>>b;
+	    int m=-1;
+	    while(n--)
+	    {
+	        int w,h,p;
+	        cin>>w>>h>>p;
+	        if(p<=b)
+	        {
+	        int x=w*h;
+	        m=max(x,m);
+	        }
+	        
+	        
+	    }
+	    if(m==-1)
+	        {
+	            cout<<"no tablet"<<endl;
+	        }
+	        else
+	        {
+	            cout<<m<<endl;
+	        }
+	    
+	}
+	return 0;
+}
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t,n,b;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>n>>b;
+	    int m=-1;
+	    while(n--)
+	    {
+	        int w,h,p;
+	        cin>>w>>h>>p;
+	        if(p<=b)
+	        {
+	        int x=w*h;
+	        m=max(x,m);
+	        }
+	        
+	        
+	    }
+	    if(m==-1)
+	        {
+	            cout<<"no tablet"<<endl;
+	        }
+	        else
+	        {
+	            cout<<m<<endl;
+	        }
+	    
+	}
+	return 0;
+}

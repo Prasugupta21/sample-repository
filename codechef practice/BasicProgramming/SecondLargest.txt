@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int secLargest(int a,int b,int c)
+{
+    if((a<b && a>c) || (a>b  && a<c))
+    {
+        return a;
+    }
+    else if((b>c && b<a)|| (b<c && b>a))
+    {
+        return b;
+    }
+    else
+    {
+        return c;
+    }
+}
+int main() {
+	// your code goes here
+	int a,b,c;
+	int t ;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>a>>b>>c;
+	   int x= secLargest(a,b,c);
+	   cout<<x<<endl;
+	}
+	
+	return 0;
+}

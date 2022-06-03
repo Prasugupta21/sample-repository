@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	
+	long long t;
+	cin>>t;
+	while(t--)
+	{
+	    long long x,y;
+	    cin>>x>>y;
+	    if(x==y)
+	    {
+	        cout<<0<<endl;
+	    }
+	    else if(x>y)
+	    {
+	       long diff=x-y;
+	       if (diff%2)
+	       {
+	           cout<<2<<endl;
+	       }
+	       else
+	       {
+	           cout<<1<<endl;
+	       }
+	    }
+	    else
+	    {
+	    long diff=y-x;
+	        if(diff%2==1)
+	        {
+	            cout<<1<<endl;
+	        }
+	        else if(diff%4)
+	        {
+	            cout<<2<<endl;
+	        }
+	        else
+	        {
+	            cout<<3<<endl;
+	            
+	        }
+	    }
+	}
+	return 0;
+	
+	
+	
+	
+	
+	
+	
+}
+
+

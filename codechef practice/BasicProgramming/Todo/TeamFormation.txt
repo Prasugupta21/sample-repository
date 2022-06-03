@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+ int t;
+ cin>>t;
+ while(t--)
+ {
+     int n,x=0,y=0,z=0,w=0,ans=0;
+     cin>>n;
+     string s,r;
+     cin>>s>>r;
+    for(int i=0;i<s.size();i++)
+    {
+         if(s[i]=='1' && r[i]=='1')
+        {
+            z++;
+        }
+        
+       else if(s[i]=='1')
+        {
+            x++;
+        }
+         else if(r[i]=='1')
+        {
+            y++;
+        }
+       
+        else
+        {
+            w++;
+        }
+        
+    }
+    int p=min(x,y);
+    x-=p;
+    y-=p;
+    ans+=p;
+    int q=x+y+w;
+    p=min(z,q);
+    ans+=p;
+    z-=p;
+    
+    ans+=(z/2);
+    cout<<ans<<endl;
+     
+ }
+	return 0;
+}

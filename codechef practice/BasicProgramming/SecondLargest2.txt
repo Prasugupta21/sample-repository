@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int secLargest(int a,int b,int c)
+{
+    int y=min(a,b);
+    int z=max(a,b);
+       if(y>c)
+       {
+           return y;
+       }
+       else
+       {
+          if(z<c)
+          {
+              return z;
+          }
+          else
+          {
+              return c;
+          }
+       }
+}
+int main() {
+	// your code goes here
+	int a,b,c;
+	int t ;
+	cin>>t;
+//also we can take a vector and sort it and print v[1] (this is better method)
+	while(t--)
+	{
+	    cin>>a>>b>>c;
+	   int x= secLargest(a,b,c);
+	   cout<<x<<endl;
+	}
+	
+	return 0;
+}

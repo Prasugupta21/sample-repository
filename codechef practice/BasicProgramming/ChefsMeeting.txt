@@ -1,0 +1,43 @@
+#include <iostream>
+#include<string>
+using namespace std;
+bool compare(string x,string y)
+{
+    int p=stoi(x.substr(0,2))*60*(x.substr(0,2)!="12") + stoi(x.substr(3,2))+ 720*(x.substr(5,1)=="P");
+    int q=stoi(y.substr(0,2))*60*(y.substr(0,2)!="12") + stoi(y.substr(3,2))+ 720*(y.substr(5,1)=="P");
+    return (p<=q);
+}
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    string s,w;
+	    cin>>s>>w;
+	    s+=w;
+	    int n;
+	    cin>>n;
+	    while(n--)
+	    {
+	        string a,b,c,d;
+	        cin>>a>>b>>c>>d;
+	        a+=b;
+	        c+=d;
+	        if(compare(a,s) && compare(s,c))
+	        {
+	            cout<<1;
+	        }
+	        else
+	        {
+	            cout<<0;
+	        }
+	    }
+	    cout<<endl;
+	    
+	    
+	}
+	  
+	return 0;
+}

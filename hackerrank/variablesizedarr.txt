@@ -10,7 +10,7 @@ int main() {
     
     int n,q,s=0,num;
     cin>>n>>q;
-    int *a[n];
+    int *a[n];//here also int **o =new int *[n]  i can and write o in every place instead of a 
     while(n--)
     {
         cin>>num;

@@ -1,0 +1,25 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int p=0,c=0;
+	    int n;
+	    cin>>n;
+	    while(n)
+	    {
+	      p=sqrt(n);
+	      n-=pow(p,2);
+	      
+	       c++;
+	      
+	    }
+	    cout<<c<<endl;
+	}
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	   vector <int>v;
+	   for(int i=0;i<n;i++)
+	   {
+	       int x;
+	       cin>>x;
+	       v.push_back(x);
+	   }
+	   
+	   int x=*min_element(v.begin(),v.end());
+	   int y=*max_element(v.begin(),v.end());
+	   int z=y-x;
+	   cout<<z<<endl;
+	   
+	   
+	}
+	return 0;
+}

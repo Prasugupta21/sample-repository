@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t ;
+	cin>>t;
+	while(t--)
+	{
+	    int c=0;
+	    int s,n,flag=0;
+	    cin>>s>>n;
+	    
+	   
+	   
+	     int x=s/n;
+	  
+	    int rem=s%n;
+	    if(rem==0)
+	    {
+	        cout<<x<<endl;
+	    }
+	    else
+	    {
+	       
+	    
+	    (rem%2!=0 && rem!=1)?x+=2:x++;
+	
+	
+	    cout<<x<<endl;
+
+	    }
+	}
+	return 0;
+}

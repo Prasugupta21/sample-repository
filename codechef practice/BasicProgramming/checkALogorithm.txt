@@ -1,0 +1,45 @@
+#include <iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int d=1;
+	  
+	    string s,c="";
+	    cin>>s;
+	    if(s.size()==1 || s.size()==2)
+	    {
+	        cout<<"NO"<<endl;
+	    }
+	    else
+	    {
+	        for(int i=1;i<=s.size();i++)
+	        {
+	            if(s[i]==s[i-1])
+	            {
+	                d++;
+	                
+	            }
+	            else
+	            {
+	               c+=s[i-1]+(to_string(d));
+	               d=1;
+	            }
+	        }
+	        if((s.size())<=(c.size()))
+	        {
+	            cout<<"NO"<<endl;
+	        }
+	        else
+	        {
+	            cout<<"YES"<<endl;
+	        }
+	    }
+	}
+	return 0;
+}

@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int sum=0;
+	    int n,y=0;
+	   string c;
+	    cin>>n>>c;
+
+	  
+	    while(n--)
+	{
+	    
+	 string s;
+	 cin>>s;
+	 if(s=="CONTEST_WON")
+	 {
+	     int r;
+	     cin>>r;
+	     sum+=300+max(0,(20-r));
+	 }
+	else if(s=="TOP_CONTRIBUTOR")
+	{
+	    sum+=300;
+	}
+	else if(s=="BUG_FOUND")
+	{
+	    int s;
+	    cin>>s;
+	    sum+=s;
+	}
+	else if(s=="CONTEST_HOSTED")
+	{
+	    sum+=50;
+	}
+	}
+	    if(c=="INDIAN")
+	    {
+	         y=sum/200;
+	    }
+	    else
+	    {
+	        y=sum/400;
+	    }
+	    cout<<y<<endl;
+	}
+	
+	return 0;
+}

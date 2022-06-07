@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main(void) {
+    // your code goes here
+	int t;
+	scanf("%d",&t);
+	while(t--){
+	    int n;
+	    scanf("%d",&n);
+	    int a=0,b=0,c=0,d=0,e=0;
+	    while(n--){
+	        char s[100];
+	        scanf("%s",s);
+	        if(strcmp(s,"cakewalk")==0){
+	            a++;
+	        }
+	        else if(strcmp(s,"simple")==0){
+	            b++;
+	        }
+	        else if(strcmp(s,"easy")==0){
+	            c++;
+	        }
+	        else if(strcmp(s,"easy-medium")==0||(strcmp(s,"medium")==0)){
+	            d++;
+	        }
+	        else if(strcmp(s,"medium-hard")==0||(strcmp(s,"hard")==0)){
+	            e++;
+	        }
+	    }
+	    if(a&&b&&c&&d&&e){
+	        printf("Yes\n");
+	    }
+	    else{
+	        printf("No\n");
+	    }
+	}
+	return 0;
+}

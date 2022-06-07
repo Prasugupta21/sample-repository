@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while(t--){
+	    string str;
+	    cin >> str;
+	    int cnt = 0;
+	    
+	    
+	    int i = 0; // You can't assign new variable in while loop like for loop
+	    while(i < str.length()){
+	        if(str[i] == '0') i++;
+	        else{
+	            cnt++;
+	            i++;
+	            while(i < str.length() and str[i] == '1') i++;
+	        }
+	    }
+	    
+	    
+	    
+	    
+	    cout << cnt << endl;
+	}
+	return 0;
+}

@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,k;
+	    cin>>n>>k;
+	    string s;
+	    int c=0,cnt=0;
+	    cin>>s;
+	    for(int i=0;i<n;i++)
+	    {
+	        if(s[i]=='0')
+	        {
+	            c++;
+	        }
+	        else
+	        {
+	            c=0;
+	        }
+	        if(c==k)
+	        {
+	            cnt++;
+	            c=0;
+	        }
+	    }
+	    cout<<cnt<<endl;
+	}
+	return 0;
+}

@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int s,n;
+	    cin>>n>>s;
+	    if(s<=n)
+	    {
+	        cout<<s<<endl;
+	    }
+	    else
+	    {
+	        int x=s-n;
+	        int y=n-x;
+	        cout<<y<<endl;// cout<< 2*n-s<<endl; also can write
+	    }
+	}
+	return 0;
+}

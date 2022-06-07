@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+int t;
+cin>>t;
+while(t--)
+{
+  int s,a,b,c;
+    cin>>s>>a>>b>>c;
+    float x=s*(1+ (c/100.0));
+   (x>=a && x<=b)?cout<<"Yes"<<endl:cout<<"No"<<endl;
+}
+	return 0;
+}

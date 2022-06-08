@@ -1,0 +1,45 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    
+    int n,q;
+    cin>>n>>q;
+       vector<vector<int>> v;
+       vector<int>p;
+    while(n--)
+    {
+        int k;
+        
+     
+        cin>>k;
+        for(int i=0;i<k;i++)
+        {
+            int x;
+            cin>>x;
+            p.push_back(x);
+           
+            
+        }
+        v.push_back(p);
+        p.clear();
+    
+        
+        
+    }
+    while(q--)
+    {
+       int x,y;
+       cin>>x>>y;
+       cout<<v[x][y]<<endl;
+        
+        
+    }
+  
+    return 0;
+}

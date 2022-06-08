@@ -1,0 +1,39 @@
+#include <iostream>
+#include<cstdlib>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,flag=0;
+	    cin>>n;
+	    int a[n];
+	    for(int k=0;k<n;k++)
+	    {
+	        cin>>a[k];
+	    }
+	    int i=0,j=n-1;
+	    int c=1;
+	    while(i<j)
+	    {
+	        if(a[i]!=c || (a[i]!=a[j]))
+	        {
+	           c=1;
+	            break;
+	            
+	           
+	        }
+	       if(a[i+1]-a[i]==1)
+	       {
+	           c++;
+	       }
+	        i++;
+	        j--;
+	    }
+	    (c==7)?cout<<"yes"<<endl:cout<<"no"<<endl;
+	}
+	return 0;
+}

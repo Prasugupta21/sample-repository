@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+int t;
+cin>>t;
+while(t--)
+{
+    long long n;
+    cin>>n;
+    long long a[n],sum=0,ans=0,f[4]={};
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+        sum+=a[i];
+        f[a[i]%4]++;
+    }
+    if(sum%4)
+    {
+        cout<<-1<<endl;
+    }
+    else
+    {
+        ans+=f[2]/2;
+        f[2]%=2;
+        int min1=min(f[1],f[3]);
+    int max1=max(f[1],f[3]);
+    ans+=min1;
+    int left=max1-min1;
+    if(f[2])
+    {
+        ans+=2;
+        left-=2;
+    }
+    ans+=3 *(left/4);
+    cout<<ans<<endl;
+
+    }
+}
+	return 0;
+}

@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int currsum=nums[0];
+        int currmax=nums[0];
+        int i=1;
+        while(i<nums.size())
+        {
+            int prevcurrmax=currmax;
+            currmax=max(nums[i],nums[i]+currmax);
+            currsum=max(currsum,currmax);
+            i++;
+        }
+        return currsum;
+        
+    }
+};

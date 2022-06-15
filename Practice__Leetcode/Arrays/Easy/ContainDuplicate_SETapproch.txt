@@ -1,0 +1,7 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        return nums.size() > set<int>(nums.begin(), nums.end()).size();// phle set me insert kro then return !(set.size()==nums.size()) kr skte h (this is another type of implementation of same thing)        
+    }
+
+};

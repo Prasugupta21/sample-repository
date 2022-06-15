@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+        unordered_set<int>s;
+        int max1=INT_MIN;
+        int currsum=0;
+        int i=0,j=0;
+       for(;j<nums.size();j++)
+       {
+           while(s.find(nums[j])!=s.end())
+           {
+               s.erase(nums[i]);
+               currsum-=nums[i];
+               i++;
+           }
+           s.insert(nums[j]);
+           currsum+=nums[j];
+           max1=max(currsum,max1);
+       }
+        return max1;
+    }
+};

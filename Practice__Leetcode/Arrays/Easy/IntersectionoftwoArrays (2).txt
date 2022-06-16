@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+
+        set<int> s;
+        for(int i=0;i<nums1.size();i++){
+            for(int j=0;j<nums2.size();j++){
+                if(nums1[i]==nums2[j]){
+                    s.insert(nums1[i]);
+                }
+            }
+        }
+                vector<int> v(s.size());
+        int c=0;
+        for(auto x :s)
+        {
+        v[c]=x;// if we dont assign size of vector v then we can push back also
+            c++;
+        }
+        return v;
+    }
+};

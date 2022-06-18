@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        set<  int>s;
+        vector<  int>v;
+     
+   for(auto x: nums)// instead of this loop i can write this line also   s.insert(nums.begin(),nums.end());
+   {
+       s.insert(x);
+   }
+           for(auto x : s)
+       {
+           v.push_back(x);
+       }
+        if(v.size()<3)
+        {
+            return v[v.size()-1];
+            
+        }
+        
+        return v[v.size()-3];
+    }
+};

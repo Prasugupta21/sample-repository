@@ -1,0 +1,64 @@
+class Solution {
+public:
+    
+    int firstOccur(vector<int>&nums,int t)
+    {
+        int a=-1;
+        int l=0,h=nums.size()-1;
+        while(l<=h)
+        {
+            int mid=(l+h)/2;
+            if(nums[mid]==t)
+            {
+                a=mid;
+                h=mid-1;
+                
+            }
+            else if(nums[mid]>t)
+            {
+                h=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
+        return a;
+    }
+     int secOccur(vector<int>&nums,int t)
+    {
+        int a=-1;
+        int l=0,h=nums.size()-1;
+        while(l<=h)
+        {
+            int mid=(l+h)/2;
+            if(nums[mid]==t)
+            {
+                a=mid;
+                l=mid+1;
+                
+            }
+            else if(nums[mid]>t)
+            {
+                h=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
+         return a;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+       
+        vector<int>v;
+        int p=firstOccur(nums,target);
+        int q=secOccur(nums,target);
+        v.push_back(p);
+         v.push_back(q);
+        
+        
+        
+        return v;
+    }
+};

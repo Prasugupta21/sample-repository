@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int thirdMax(vector& nums) {
+        sort(nums.begin(), nums.end());
+        int largest_ind = lower_bound(nums.begin(), nums.end(), nums.back()) - nums.begin() - 1;
+        if (nums[0] == nums.back() || nums[largest_ind] == nums[0])
+            return nums.back();
+        return nums[lower_bound(nums.begin(), nums.begin() + largest_ind, nums[largest_ind]) - nums.begin() - 1];
+    }
+};`

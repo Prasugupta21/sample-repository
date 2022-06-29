@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int a=0;
+        for(int i=0;i<height.size();i++)
+            {
+            int max1=0,max2=0;
+            for(int j=0;j<=i;j++)
+            {
+                max1=max(height[j],max1);
+            }
+             for(int k=i;k<height.size();k++)
+            {
+                max2=max(height[k],max2);
+            }
+            
+           a+=(min(max1,max2)-height[i]); 
+        }
+        return a;
+        
+        
+    }

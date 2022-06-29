@@ -1,0 +1,18 @@
+class Solution {
+public:
+void rotate(vector<vector>& matrix) {
+
+//first we do reverse of a matrix
+reverse(matrix.begin(), matrix.end());
+
+//now we do tanspose of matrix to rotate it 90deg 
+for(int i=0; i<matrix.size(); i++)
+{
+	for(int j=i+1; j<matrix[i].size(); j++)
+	{
+		swap(matrix[i][j], matrix[j][i]);
+	}
+}
+return;
+}
+};

@@ -1,0 +1,32 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+    //Write your code here
+    vector<int>v;
+    int n;
+    cin>>n;
+    while(n--)
+    {
+        int x;
+        cin>>x;
+        v.push_back(x);
+    }
+    int k;
+    cin>>k;
+  while(k--)
+  {
+      int p=v[0];
+      for(int i=1;i<v.size();i++)
+      {
+          v[i-1]=v[i];
+      }
+      v[v.size()-1]=p;
+  }
+    for(auto b : v)
+    {
+        cout<<b<<" ";
+    }
+        
+}

@@ -1,0 +1,71 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        for(int i=0;i<9;i++)
+        {
+            set<char>s;
+            int c=0;
+            for(int j=0;j<9;j++)
+            {
+              if(board[i][j]!='.') 
+              {
+                  c++;
+                  s.insert(board[i][j]);
+              }
+            }
+            if(c!=s.size())
+            {
+                return false;
+            }
+                
+            
+            }
+         for(int j=0;j<9;j++)
+        {
+            set<char>s;
+            int c=0;
+            for(int i=0;i<9;i++)
+            {
+              if(board[i][j]!='.') 
+              {
+                  c++;
+                  s.insert(board[i][j]);
+              }
+            }
+            if(c!=s.size())
+            {
+                return false;
+            }
+                
+            
+            }
+        for(int i=0;i<9;i+=3)
+        {
+           
+            for(int j=0;j<9;j+=3)
+            {
+                 int c=0;
+            set<char>s;
+                for(int k=i;k<i+3;k++)
+                {
+                    for(int p=j;p<j+3;p++)
+                    {
+                       if(board[k][p]!='.')
+              { 
+                  c++;
+                  s.insert(board[k][p]);
+              }
+            
+          
+                    }
+                }
+                  if(c!=s.size())
+            {
+                return false;
+            } 
+            }
+        }
+        return true;
+    }
+      
+};

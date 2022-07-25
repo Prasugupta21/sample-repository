@@ -1,0 +1,33 @@
+#include<cmath>
+
+void subset_Array(int input[],int n,int output[],int osize,int si)
+{
+    if(si==n)
+    {
+        for(int i=0;i<osize;i++)
+        {
+            cout<<output[i]<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+    int smalloutput[15];
+    subset_Array(input,n,output,osize,si+1);
+    int i;
+    for( i=0;i<osize;i++)
+    {
+        smalloutput[i]=output[i];
+    }
+    smalloutput[i]=input[si];
+        subset_Array(input,n,smalloutput,osize+1,si+1);
+
+}
+
+
+
+void printSubsetsOfArray(int input[], int size) {
+	// Write your code here
+ 
+    int output[15];
+    subset_Array(input,size,output,0,0);
+}

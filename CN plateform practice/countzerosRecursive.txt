@@ -1,0 +1,24 @@
+
+int countZeros(int n) {
+   
+ // Write your code here
+if(n<=9)
+{
+    if(!n)
+    {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+    int ld=n%10;
+    int p=countZeros(n/10);
+    if(ld==0)
+    {
+        return p+1;
+    }
+    return p;
+}
+
+

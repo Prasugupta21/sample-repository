@@ -1,0 +1,23 @@
+int first(int input[],int i ,int x,int n)
+{
+    if(i==n)
+    {
+        return -1;
+    }
+    if(input[i]==x)
+    {
+        return i;
+    }
+    return first(input,i+1,x,n);
+  
+}
+
+
+
+int firstIndex(int input[], int size, int x) {
+    
+
+ int p=first(input,0,x,size);
+return p;
+  
+}

@@ -1,0 +1,81 @@
+/*
+	To apply the method explained in the hint video, we have to add two more parameters in the function call. This can be done by calling a helper function from given function. The helper function can have three parameters: array, start index, end index.  
+	
+	Skeleton code to achieve this:
+	#include <iostream>
+	using namespace std;
+	
+	void quickSort(int input[], int start, int end)
+	{
+    		// your code goes here 
+	}
+	void quickSort(int input[], int size)
+	{
+    		quickSort(input, 0, size - 1);
+	}
+	
+    
+    
+    
+*/
+#include <iostream>
+#include<utility>
+using namespace std;
+
+int partition(int input[],int s,int e)
+{
+    int x=input[s];
+    int c=0;
+    for(int i=s+1;i<=e;i++)
+    {
+        if(input[i]<x)
+        {
+            c++;
+        }
+    }
+   input[s]=input[s+c];
+    input[s+c]=x;
+    int i=s,j=e;
+    while(i<(s+c) && j>(s+c))
+    {
+        if(input[i]<x)
+        {
+            i++;
+
+            
+        }
+        else if(input[j]>=x)
+        {
+            j--;
+}
+        else{
+            swap(input[i],input[j]);
+            i++;
+            j--;
+        }
+    }
+    return s+c;
+}
+void quick_sort(int input[],int s,int e)
+{
+    if(s>=e)
+    {
+        return;
+    }
+    int c=partition(input,s,e);
+    quick_sort(input,s,c-1);
+    quick_sort(input,c+1,e);
+}
+
+
+void quickSort(int input[], int size) {
+  /* Don't write main().
+     Don't read input, it is passed as function argument.
+     Change in the given array itself.
+     Taking input and printing output is handled automatically.
+  */ 
+    quick_sort(input,0,size-1);
+ 
+ 
+    
+}

@@ -1,0 +1,57 @@
+
+ #include<vector>
+
+void merge(int input[],int s,int e,int mid)
+{
+  int a[e-s+1]; // also can take int *output=new int [e-s+1];
+    int i=s,j=mid+1;
+    int k=0;
+    while(i<=mid && j<=e)
+    {
+        if(input[i]<input[j])
+        {
+           a[k++]=input[i++];
+        }
+        else{
+           a[k++]=input[j++];
+        }
+    }
+    while(i<=mid)
+    {
+     a[k++]=input[i++]; 
+    }
+    while(j<=e)
+    {
+         a[k++]=input[j++]; 
+        
+    }
+    int c=0;
+    for(int r=s;r<=e;r++)
+    {
+        input[r]=a[c++];
+    }
+//     if we take ouput pointer then after copying  we have to delete the output array
+// delete []output; (dynamically)
+     
+}
+
+
+void merge_sort(int input[],int s,int e)
+{
+   int mid=(s+e)/2;
+    if(s>=e)
+    {
+        return;
+    }
+    merge_sort(input,s,mid);
+    merge_sort(input,mid+1,e);
+    merge(input,s,e,mid);
+}
+
+
+
+void mergeSort(int input[], int size){
+     
+    merge_sort(input,0,size-1);
+  
+}

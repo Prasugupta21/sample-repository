@@ -1,0 +1,76 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+string getString(int n)
+{
+    switch(n){
+        case 2:
+            {
+                return "abc";
+            }
+        case 3:
+            {
+                return "def";
+            }
+        case 4:
+            {
+                return "ghi";
+            }
+        case 5:
+            {
+                return "jkl";
+            }
+        case 6:
+            {
+                return "mno";
+            }
+        case 7:
+            {
+                return "pqrs";
+            }
+        case 8:
+            {
+                return "tuv";
+            }
+        case 9:
+            {
+                return "wxyz";
+            }
+        default:
+            {
+                return "";
+            }
+    }
+}
+int keypad (int num,string output[])
+{
+  if(num==0)
+  {
+      output[0]="";
+      return 1;
+  }
+    int n=num%10;
+    int x=keypad(num/10,output);
+    string mobchar=getString(n);
+    for(int i=0;i<mobchar.size()-1;i++)
+    {
+      for(int j=0;j<x;j++)
+      {
+          output[j+(i+1)*x]=output[j];
+      }
+    }
+    int m=0;
+    for(int i=0;i<mobchar.length();i++)
+    {
+        for(int j=0;j<x;j++)
+        {
+            output[m++]+=mobchar[i];
+        }
+    }
+    return x *mobchar.size();
+        
+        
+    
+}

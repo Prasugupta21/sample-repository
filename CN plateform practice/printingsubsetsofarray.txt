@@ -35,6 +35,6 @@ void printSubsetsOfArrayhelper(int input[],int n,int output [],int m)
 void printSubsetsOfArray(int input[], int size) {
 	// Write your code here
     int x=pow(2,size);
-int output[x];
+int output[x]; // no need to size x here we  can  simply  put 15 
     printSubsetsOfArrayhelper(input,size,output,0);
 }

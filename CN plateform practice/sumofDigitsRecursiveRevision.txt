@@ -1,0 +1,11 @@
+int sumOfDigits(int n) {
+   
+if(n==0) // also  can write if(n<=9) {return n;} in base case 
+{
+    return 0;
+}
+    int ld=n%10;
+    return ld + sumOfDigits(n/10);
+}
+
+

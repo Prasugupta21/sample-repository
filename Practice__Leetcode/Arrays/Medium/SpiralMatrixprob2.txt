@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        int top=0,left=0,right=n-1,bottom=n-1;
+        vector<vector<int>>v(n,vector<int>(n,0));
+        int index=1;
+        while(top<=bottom && left<=right)
+        {
+            for(int j=left;j<=right;j++)
+            {
+                v[top][j]=index;
+                index++;
+            }
+            top++;
+          for(int i=top;i<=bottom;i++)
+          {
+              v[i][right]=index;
+              index++;
+          }
+          right--;
+            for(int j=right;j>=left;j--)
+            {
+                v[bottom][j]=index;
+                index++;
+            }
+            bottom--;
+            for(int i=bottom;i>=top;i--)
+            {
+                v[i][left]=index;
+                index++;
+            }
+            left++;
+        }
+        
+        return v;
+        
+    }
+};

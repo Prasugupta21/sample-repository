@@ -1,0 +1,40 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <cassert>
+using namespace std;
+
+// Write your Student class here
+class Student{
+  int *scores;
+  public:
+  Student(){
+    this->scores=new int [5];  
+  }  
+  void input(){
+//in first attempt i have written those now commented but better implementation is below the commented code
+    //   int a,b,c,d,e;
+    //   cin>>a>>b>>c>>d>>e;
+    //   this->scores[0]=a;
+    //    this->scores[1]=b;
+    //     this->scores[2]=c;
+    //      this->scores[3]=d;
+    //       this->scores[4]=e;
+
+
+          for(int i=0;i<5;i++){
+              cin>>scores[i];
+          }
+  }
+  int calculateTotalScore(){
+      int sum=0;
+      for(int i=0;i<5;i++){
+          sum+=this->scores[i];
+      }
+      return sum;
+  }
+};
+
+int main() {

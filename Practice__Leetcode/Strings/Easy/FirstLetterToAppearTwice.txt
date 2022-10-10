@@ -1,0 +1,44 @@
+class Solution {
+public:
+    char repeatedCharacter(string s) {
+        map<char,int>m;
+        for(int i=0;i<s.size();i++){
+            if(m.find(s[i])==m.end()){
+                m[s[i]]++;
+            }
+            else{
+                return s[i];
+            }
+        }
+        return '\0';// this statement has no mean but i wrote this because of compiler issue;
+    }
+};
+
+
+Another method 
+
+
+class Solution {
+public:
+    char repeatedCharacter(string s) {
+        
+        unordered_map<char,int> mp;
+        
+        for (auto x : s){
+            
+            mp[x]++;
+            
+            if (mp[x]==2){
+                
+                return x;
+            
+                
+            }
+            
+        }
+        
+      
+        
+        return '0'; 
+    }
+};

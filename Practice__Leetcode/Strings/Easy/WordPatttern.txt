@@ -1,0 +1,88 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+     map<char,string>m1;
+     map<string,char>m2;
+     vector<string>v;
+        string t="";
+        for(int i=0;i<s.size();i++){
+            if(s[i]==' '){
+                v.push_back(t);
+                t="";
+                
+            }
+                else if(i==s.size()-1){
+                    t+=s[i];
+                    v.push_back(t);
+                    t="";
+                }
+            else{
+                t+=s[i];
+            }
+        }
+        if(v.size()!=pattern.size()){
+            return false;
+        }
+        for(int i=0;i<pattern.size();i++){
+            if((m1.find(pattern[i])==m1.end()) &&(m2.find(v[i])==m2.end())){
+                m1[pattern[i]]=v[i];
+                m2[v[i]]=pattern[i];
+            }
+            else if((m1[pattern[i]]!=v[i])||(m2[v[i]]!=pattern[i])){
+                return false;
+            }
+        }
+        return true;
+        
+    }
+};
+
+
+
+Approach 2
+
+
+
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+         unordered_map<char,string> m;
+        unordered_map<string,int> cnt;
+        int j = 0;
+      
+        
+        for(int i = 0; i < s.size() ; i++){
+            string chk = "";
+            while(s[i] != ' ' && i < s.size() ){
+                chk += s[i];
+                i++;
+            }
+            if(m.find(pattern[j]) == m.end()){
+                   m[pattern[j]] = chk;
+                cnt[chk]++;
+                if(cnt[chk] > 1){
+                    return false;
+                }
+              
+               
+            }
+            else{
+             
+                 if(m[pattern[j]] != chk){
+                    return false;
+                } 
+            }
+            if(j >= pattern.size()){
+                return false;
+            }
+            j++;
+         
+        }
+        
+        if(j<pattern.size())
+        {
+            return false;
+        }        
+        return true;
+    }
+};

@@ -1,0 +1,51 @@
+class Solution {
+public:
+    bool check(string First,string Compare, map<char,int>&m){
+        int i=0,j=0;
+        while(i<First.size() && j<Compare.size()){
+            if(First[i]!=Compare[j]){
+                return m[First[i]]<m[Compare[j]];
+            }
+            i++;
+            j++;
+        }
+        return First.size()<=Compare.size();
+    }
+    bool isAlienSorted(vector<string>& words, string order) {
+        map<char,int>m;
+        int i=0;
+        for(auto x : order){
+            m[x]=i++;
+        }
+        for(int i=0;i<words.size()-1;i++){
+        if(!(check(words[i],words[i+1],m))){
+            return false;
+        }
+        }
+            return true;
+    }
+};
+
+ANother 
+
+
+class Solution {
+public:
+    bool isAlienSorted(vector<string>& words, string order) 
+    {
+        unordered_map<char,char> m;
+        for(int i=0;i<26;i++)
+        {
+            m[order[i]]=i+'a';
+        }
+        for(auto &w:words)
+        {
+            for(auto &ch:w)
+            {
+                ch=m[ch];
+            }
+        }
+        return is_sorted(words.begin(),words.end());// check sorting 
+        
+    }
+};

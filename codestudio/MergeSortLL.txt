@@ -1,0 +1,95 @@
+/********************************************************************
+
+    Following is the representation of the Singly Linked List Node:
+
+    class node{
+        public:
+            int data;
+            node * next;
+            node(int data){
+                this->data=data;
+                this->next=NULL;
+            }
+    };
+    
+********************************************************************/
+
+node* Find_Mid(node*head){
+    node*slow =head;
+    node*fast=head->next;
+    while((fast)&&(fast->next)){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
+}
+
+node*merge(node*h1,node*h2){
+    if((!h1) &&(h2)){
+        return h2;
+    }
+        if((!h2)&&(h1)){
+            return h1;
+        }
+      
+        node*ft=NULL;
+       node*fh=NULL;
+      
+        while((h1)&&(h2)){
+            if(h1->data<=h2->data){
+                if((!ft)&&(!fh)){
+                    fh=h1;
+                    ft=h1;
+
+                }
+            else{
+                ft->next=h1;
+                ft=ft->next;
+                
+            }
+            h1=h1->next;
+        }
+        else{
+                if((!ft)&&(!fh)){
+                    fh=h2;
+                    ft=h2;
+
+                }
+            
+            else{
+                ft->next=h2;
+                ft=ft->next;
+                
+            }
+            h2=h2->next;
+        }
+        }
+        if(h1){
+            ft->next=h1;
+         
+          
+          
+        }
+         if(h2){
+            ft->next=h2;
+        
+        }
+        return fh;
+}
+node* mergeSort(node *head) {
+    // Write your code here.
+    if(!head){
+        return NULL;
+    }
+    if(!(head->next)){
+        return head;
+    }
+    node*mid=Find_Mid(head);
+    node*temp=mid->next;
+    mid->next=NULL;
+    node*first=mergeSort(head);
+    node*sec=mergeSort(temp);
+    return merge(first,sec);
+    
+    
+}

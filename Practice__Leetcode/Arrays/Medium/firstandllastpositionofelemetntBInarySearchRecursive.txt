@@ -1,0 +1,46 @@
+class Solution {
+public:
+    
+  void helper(vector<int>&nums,int l,int h,int target ,vector<int>&v){
+       int mid=(l+h)/2.0;
+       if(l>h){
+          v.push_back(-1);
+             v.push_back(-1);
+           return;
+       }
+       if(nums[mid]==target){
+           int temp=mid;
+           int i=mid;
+           int j=mid;
+           while(temp<h &&  nums[temp]==nums[temp+1]){
+               j=temp+1;
+               temp++;
+           }
+           temp=mid;
+            while(temp>l &&  nums[temp]==nums[temp-1]){
+               i=temp-1;
+               temp--;
+           }
+           v.push_back(i);
+           v.push_back(j);
+           return;
+       }
+       else if(nums[mid]<target){
+           helper(nums,mid+1,h,target,v);
+       }
+       else{
+           helper(nums,l,mid-1,target,v);
+       }
+   }
+    
+    vector<int> searchRange(vector<int>& nums, int target) {
+       
+  
+       vector<int>v;
+           helper(nums,0,nums.size()-1,target,v);
+        return v;
+        
+       
+      
+    }
+};

@@ -1,0 +1,23 @@
+class Solution {
+public:
+   
+    string addBinary(string a, string b) {
+       int carry=0;
+        string ans="";
+        int i=a.size()-1,j=b.size()-1;// only also use only one pointer i  and wherever I wrote j where I can write i 
+        while(carry ||  i>=0 || j>=0){
+            int x=0,y=0;
+            if(i>=0 && a[i]=='1'){
+                x=1;
+            }
+            if(j>=0 && b[j]=='1'){
+                y=1;
+            }
+            ans=to_string((x+y+carry)%2)+ans;
+            carry=(x+y+carry)/2;
+            i--;
+            j--;
+        }
+        return ans;
+    }
+};

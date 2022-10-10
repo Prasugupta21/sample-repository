@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string originalDigits(string s) {
+       int i=0;
+        map<char,int>m;
+        for(;i<s.size();i++){
+         m[s[i]]++;
+      
+        }
+     
+    vector<string>v{"zero0","ufor4","one1","wto2","three3","five5","xsi6","seven7","gieht8","inne9"};
+    for(i=0;i<10;i++){
+       if(m.find(v[i][0])!=m.end()){
+           for(int j=1;j<v[i].size()-1;j++){
+               m[v[i][j]]-=m[v[i][0]];
+           }
+       } 
+    }
+     
+        string ans="";
+        for(i=0;i<10;i++){
+            while(m[v[i][0]]--){
+            int b=v[i].size()-1;
+            ans+=v[i][b];
+            }
+        }
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};

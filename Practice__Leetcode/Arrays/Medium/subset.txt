@@ -1,0 +1,25 @@
+class Solution {
+    
+private:
+     void subset(vector<int> &nums,vector<vector<int>> &v,vector<int>smalloutput,int si,int n){ // but cant use &smalloutput here in parameter
+         if(si==n)
+         {
+             v.push_back(smalloutput);
+             return;
+         }
+         subset(nums,v,smalloutput,si+1,n);
+         
+         smalloutput.push_back(nums[si]);
+         subset(nums,v,smalloutput,si+1,n);
+     }
+    
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> v;
+        vector<int>smalloutput;
+        int n=nums.size();
+        subset(nums,v,smalloutput,0,n);
+        return v;
+        
+    }
+};

@@ -1,0 +1,115 @@
+class Solution {
+public:
+   inline bool isPalindrome(string s,int i,int j){
+        while(i<j){
+            if(s[i]!=s[j]){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    bool checkPalindromeFormation(string a, string b) {
+      int i=0,j=a.size()-1;
+        if((isPalindrome(a,i,j))||(isPalindrome(b,i,j))){
+            return true;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        i=0,j=a.size()-1;
+        while(i<j){
+            if(a[i]!=b[j]){
+                break;
+            }
+            i++;
+            j--;
+        }
+        if(i>=j){
+            return true;
+        }
+        if(isPalindrome(a,i,j)){
+            return true;
+        }
+           if(isPalindrome(b,i,j)){
+            return true;
+        }
+        i=0,j=a.size()-1;
+        while(i<j){
+            if(b[i]!=a[j]){
+                break;
+            }
+            i++;
+            j--;
+        }
+        if(i>=j){
+            return true;
+        }
+         if(isPalindrome(a,i,j)){
+            return true;
+        }
+           if(isPalindrome(b,i,j)){
+            return true;
+        }
+        return false;
+        
+        
+    }
+};
+
+Same logic  ANother Implementation
+
+class Solution {
+public:
+    bool ispal(string s,int i,int j)
+    {
+        while(i<j)
+        {
+            if(s[i]!=s[j])
+                return 0;
+            i++;
+            j--;
+        }
+        return 1;
+    }
+    bool solve(string a,string b)
+    {
+        int n=a.size(),m=b.size();
+        int i=0,j=m-1;
+        while(i<j )
+        {
+            if(a[i]!=b[j]){
+                break;
+            }
+            i++;
+            j--;
+        }
+        if(i>=j){
+            return 1;
+        }
+// this is line X ifcondition below 
+
+
+        if((ispal(a,i,j)) || (ispal(b,i,j)))
+
+
+//  if((ispal(a.substr(i,j-i+1))) || (ispal(b.substr(i,j-i+1))))
+
+//also use commentend line instead of  line X
+
+
+            return 1;
+        return 0;
+    }
+    bool checkPalindromeFormation(string a, string b)
+    {
+        int yes=((solve(a,b))||(solve(b,a)));
+        return yes;
+    }
+};

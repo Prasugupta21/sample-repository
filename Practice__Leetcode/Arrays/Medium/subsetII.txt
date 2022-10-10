@@ -1,0 +1,58 @@
+class Solution {
+    
+  
+public:
+    void subset_II(vector<int>&nums,vector<vector<int>>&ans,vector<int>smalloutput,int si,int n){
+        if(si==n){
+            ans.push_back(smalloutput);
+            return;
+        }
+        int i=si;
+        while(si<n-1 && nums[si]==nums[si+1]){
+            si++;
+        }
+//here if i call first included part first and then excluded part so after include call we have to take while loop and i dont have do int i =si then simply    can write subset_II(nums,ans,smalloutput,si+1,nums.size()); instead of   subset_II(nums,ans,smalloutput,i+1,nums.size()) in include call;
+          subset_II(nums,ans,smalloutput,si+1,nums.size());
+        smalloutput.push_back(nums[i]);
+         subset_II(nums,ans,smalloutput,i+1,nums.size());
+        
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+      vector<vector<int>>ans;
+        vector<int>smalloutput;
+        sort(nums.begin(),nums.end());
+        subset_II(nums,ans,smalloutput,0,nums.size());
+        return ans;
+    }
+};
+// another method
+class Solution {
+public:
+
+void solve(vector<int> arr, int ind, vector<int> ds, vector<vector<int>> &ans){
+    if(ind == arr.size()){
+        ans.push_back(ds);
+        return;
+    }
+    
+    ds.push_back(arr[ind]);
+    solve(arr, ind+1, ds, ans);
+    
+    ds.pop_back();
+    int j;
+    for(j=ind; j<arr.size(); j++){
+        if(arr[j] != arr[ind]){
+            break;
+        }
+    }
+    solve(arr, j, ds, ans);
+}
+
+vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+    vector<vector<int>> ans;
+    vector<int> ds;
+    sort(nums.begin(), nums.end());
+    solve(nums, 0, ds, ans);
+    return ans;
+}
+};

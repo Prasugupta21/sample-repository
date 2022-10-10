@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int rearrangeCharacters(string s, string target) {
+        map<char,int>m1,m2;
+        for(auto x : s){
+            m1[x]++;
+        }
+        int i=0,min1=100;
+        while(i<target.size()){
+           m2[target[i]]++;
+            min1=min(min1,(m1[target[i]]/m2[target[i]]));
+            i++;
+            }
+            
+        
+    return min1;
+    
+        
+        
+    }
+};

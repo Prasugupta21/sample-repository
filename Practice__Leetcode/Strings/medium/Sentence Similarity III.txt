@@ -1,0 +1,57 @@
+class Solution {
+public:
+    bool areSentencesSimilar(string a, string b) {
+     
+        int i=0,j=0;
+        vector<string>v1,v2;
+        string s="";
+        while(i<a.size()){
+            if(a[i]!=' '){
+                s+=a[i];
+              
+            }
+            else{
+            v1.push_back(s);
+            s="";
+            }
+            i++;
+        }
+        
+         v1.push_back(s);
+        s="";
+        i=0;
+         while(i<b.size()){
+            if(b[i]!=' '){
+                s+=b[i];
+             
+            }
+             else{
+            v2.push_back(s);
+            s="";
+             }
+            i++;
+        }
+         v2.push_back(s);
+            s="";
+        i=0;
+        int k=v1.size()-1,l=v2.size()-1;
+        while((i<=k)&&(j<=l)){
+            if((v1[i]==v2[j])){
+                i++;
+                j++;
+             
+            }
+            else if(v1[k]==v2[l]){
+                l--;
+               k--;
+            }
+          else{
+              return false;
+          }
+            
+                
+        }
+        return true;
+        
+    }
+};

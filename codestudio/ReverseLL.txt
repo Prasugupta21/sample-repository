@@ -1,0 +1,152 @@
+
+
+
+
+  *Iterative Approach 1*
+ 
+
+Node* reverseLinkedList(Node *head)
+{
+   Node*prev=NULL;
+    Node*temp=head;
+    while(temp){
+        Node*container=temp->next;
+        temp->next=prev;
+        prev=temp;
+        temp=container;
+        
+    }
+    return prev;
+    // Write your code here
+}
+
+  *Iterative Approach 2*
+
+
+Node* reverseLinkedList(Node *head)
+{
+   Node*prev=NULL;
+   Node*curr=head;
+    Node*next2=head->next;
+    while(curr){
+        curr->next=prev;
+        prev=curr;
+        curr=next2;
+        if(next2){
+            next2=next2->next;
+        }
+    }
+    return prev;
+    // Write your code here
+}
+*Recursive Approach*
+
+
+1.Giving TLE
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+Node* reverseLinkedList(Node *head)
+{
+    if(!head){
+        return NULL;
+    }
+    else if(!(head->next)){
+        return head;
+    }
+    Node*x=reverseLinkedList(head->next);
+    Node*y=x;
+    while(x->next){
+        x=x->next;
+    }
+    x->next=head;
+    head->next=NULL;
+    return y;
+    // Write your code here
+}
+
+
+
+*USING HEAD AND TAIL ALSO SO THAT IT WILL OPMISTED
+
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+class Pair{
+    public:
+  Node*head;
+    Node*tail;
+};
+
+Pair reverseLL(Node*head){
+    if((!head)||(!(head->next))){
+        Pair ans;
+        ans.head=head;
+        ans.tail=head;
+        return ans;
+    }
+    Pair smallAns= reverseLL(head->next);
+    smallAns.tail->next=head;
+    head->next=NULL;
+    smallAns.tail=head;
+    return smallAns;
+}
+
+Node* reverseLinkedList(Node *head)
+{
+  return reverseLL(head).head;
+    // Write your code here
+}
+
+
+
+
+2.THE BEST APPROACH
+
+Node* reverseLinkedList(Node *head)
+{
+    if((!head)|| (!(head->next))){
+        return head;
+    }
+   
+    Node*x=reverseLinkedList(head->next);
+  
+  
+    head->next->next=head;
+    head->next=NULL;
+    return x;
+    // Write your code here
+}
+
+

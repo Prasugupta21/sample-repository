@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int nextGreaterElement(int n) {
+       string s=to_string(n);
+    int i=-1,j;
+     for(i=s.size()-2;i>=0;i--){
+         if((s[i]-'0')<(s[i+1]-'0')){
+             break;
+         }
+         
+     }
+        if(i<0){
+            return -1;
+        }
+        for( j=s.size()-1;j>i;j--){
+            if((s[j]-'0') >(s[i]-'0')){
+                break;
+            }
+        }
+     
+               swap(s[i],s[j]);
+               reverse(s.begin()+i+1,s.end());
+               int b=s.size()-1,k=s.size()-1;
+        long long a=0;
+        while(k>=0){
+          a+=pow(10,b-k)*(s[k]-'0');
+            k--;
+            
+        }
+               if(a<=(pow(2,31)-1)){
+                   return int(a);
+               }
+               else{
+                   return -1;
+               }
+    }
+};

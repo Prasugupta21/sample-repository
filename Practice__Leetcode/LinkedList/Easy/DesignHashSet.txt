@@ -1,0 +1,116 @@
+class MyHashSet {
+public:
+       vector<bool>v;
+    MyHashSet() {
+         v.resize(1000001,false); 
+    }
+    
+    void add(int key) {
+        if(!(v[key])){
+            v[key]=true;  // here if condition is not necessary in add and remove both functions
+        }
+    }
+    
+    void remove(int key) {
+            if((v[key])){
+            v[key]=false;
+        }
+    }
+    
+    bool contains(int key) {
+        return v[key];
+    }
+};
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
+
+2.Another
+
+class MyHashSet {
+    vector<int> v;
+public:
+    MyHashSet() {
+        
+    }
+    
+    void add(int key) {
+        auto it = find(v.begin(), v.end(), key);
+        if(it == v.end()){
+            v.push_back(key); 
+        }
+       
+    }
+    
+    void remove(int key) {
+        auto it = find(v.begin(), v.end(), key);
+        if(it != v.end()){
+            v.erase(it);
+        }
+    }
+    
+    bool contains(int key) {
+        return find(v.begin(), v.end(), key) != v.end();
+    }
+};
+
+
+
+/*Till size pow(10,7) we can use vector but greater size than this we cant use vector 
+
+SO we have to use Another technick . There are many technick but here Channing technick is used;
+In this method we can take any size . we can 
+
+class MyHashSet {
+public:
+       vector<list<int>>m;
+
+    MyHashSet() {
+         m.resize(10);
+         
+    }
+          int size=10;
+    int Hash(int key){
+        return (key%size);
+    }
+    list<int>::iterator search(int key){
+        int i=Hash(key);
+        return find(m[i].begin(),m[i].end(),key);
+    }
+    void add(int key) {
+       if(contains(key)){
+           return ;
+       }
+        int i=Hash(key);
+        m[i].push_back(key);
+    }
+    
+    void remove(int key) {
+       if(!contains(key)){
+           return;
+       }    
+    int i=Hash(key);
+        m[i].erase(search(key));
+    }
+    
+    bool contains(int key) {
+        int i=Hash(key);
+      if(search(key)!=m[i].end()){
+          return true;
+      }
+        return false;
+    }
+};
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */

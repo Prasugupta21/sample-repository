@@ -1,0 +1,100 @@
+class Solution {
+public:
+    bool areOccurrencesEqual(string s) {
+      map<char,int>m;
+        for(auto x : s){
+            m[x]++;
+        }
+        int i=0;
+        while(i<s.size()-1){
+            if(m[s[i]]!=m[s[i+1]]){
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+};
+
+
+Approach 2
+
+
+class Solution {
+public:
+    bool areOccurrencesEqual(string s) {
+        vector<int> mp(26,0);
+        for(auto x:s)
+        {
+            int k = x-'a';
+            mp[k]++;
+        }
+        int k= -1;
+        for(int x:mp)
+        {
+            if(x!=0)
+            {
+                k = x;
+                break;
+            }
+        }
+        
+        for(auto x: mp)
+        {
+            if(x!=0 and  k!=x )
+            {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+};
+
+Approach 3
+
+class Solution {
+public:
+int count(string s,char c)
+{
+int n=0;
+for(int i=0;i<s.size();i++)
+{
+if(s[i]==c)
+n++;
+}
+return n;
+}
+bool areSame(vector&a,int n)
+{
+unordered_map<int,int> m;//hash map to store the frequency of every
+//element
+
+for(int i=0;i<n;i++)
+   m[a[i]]++;
+  
+if(m.size()==1)
+   return true;
+else
+   return false;
+}
+bool areOccurrencesEqual(string s) {
+set ch;vectorv;
+for(int i=0;i<s.size();i++)
+{
+ch.insert(s[i]);
+}
+for(auto it=ch.begin();it!=ch.end();it++)
+{
+int c=count(s,*it);
+v.push_back(c);
+}
+
+    if(areSame(v,v.size()))
+       return true;
+       else
+       return false;
+    
+    
+}
+};

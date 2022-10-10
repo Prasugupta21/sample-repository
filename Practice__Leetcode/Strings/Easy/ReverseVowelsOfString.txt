@@ -1,0 +1,65 @@
+class Solution {
+public:
+    
+    bool isVowel(char c){
+
+      // Also can do in commented way  but for this we have to iterate a loop
+
+
+
+       //   char g[]={'a','e','i','o','u','A','E','I','O','U'};
+       // for(int i=0;i<10;i++){
+       //     if(c==g[i]){
+       //         return true;
+       //     }
+ 
+ }
+  
+        return ((c=='a')||(c=='e')||(c=='i')||(c=='o')||(c=='u')||(c=='A')||(c=='I')||(c=='O')||(c=='E')||(c=='U'));
+
+
+//  instead of this also can do char y=toupper(c);
+ //  return ((y=='A')  || (y=='E')........................) ;  only capital character not small 
+
+      
+    }
+    string reverseVowels(string s) {
+       int i=0,j=s.size()-1;
+        while(i<j){
+            if((isVowel(s[i]))&& (isVowel(s[j]))){
+                swap(s[i++],s[j--]);
+            }
+            else if((isVowel(s[i]) && (!isVowel(s[j])))){
+                j--;
+            }
+            else{
+                i++;
+            }
+        }
+        return s;
+    }
+};
+
+
+                                                        Approach 2
+
+class Solution {
+public:
+    string reverseVowels(string s) {
+        int i=0;
+        int j=s.size()-1;
+        map<char,int> mp;
+        string abs = "aeiouAEIOU";
+        for(auto i : abs){
+            mp[i]++;
+        }
+        while(i<j){
+           if(mp.find(s[i])!=mp.end() && mp.find(s[j])!=mp.end()) {
+                swap(s[i++],s[j--]);
+            }
+            else if (mp.find(s[i])==mp.end()) i++;
+            else if (mp.find(s[j])==mp.end()) j--;
+        }
+        return s;
+    }
+};

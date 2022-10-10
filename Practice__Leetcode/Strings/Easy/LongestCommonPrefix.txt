@@ -1,0 +1,74 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+      string s="",temp="";
+       string ans=strs[0];
+        for(int i=1;i<strs.size();i++){
+            s=strs[i];
+            temp="";
+            int k=0;
+            while(s[k]!='\0'){
+                if(s[k]==ans[k]){
+                temp+=ans[k++];
+                    
+                    }
+                else{
+                    break;
+                }
+                
+            }
+            ans=temp;
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+                            // Approch 2
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+      string ans="";
+        sort(strs.begin(),strs.end());
+        for(int i=0;i<strs[0].size();i++){
+            if(strs[0][i]==strs[strs.size()-1][i]){
+                ans+=strs[0][i];
+            }
+            else{
+                break;
+            }
+        }
+        return ans;
+       
+    }
+};
+
+                                              
+
+
+
+                                                     Approach 3
+
+class Solution {
+public:
+   string longestCommonPrefix(vector<string>& strs)
+    {
+        string ans="";
+        for(int i=0;i<strs[0].size();i++)
+        {
+            for(int j=1;j<strs.size();j++)
+            {
+                if(strs[0][i] != strs[j][i])
+                {
+                    return ans;
+                }
+            }
+            ans.push_back(strs[0][i]);
+        }
+        return ans;
+    }
+};

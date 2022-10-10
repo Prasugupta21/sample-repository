@@ -1,0 +1,32 @@
+class Solution {
+public:
+   
+    inline double getdouble(string s){
+        string t="",a="";
+        int i=0;
+        for( i=0;i<s.size();i++){
+           if(s[i]=='('){
+               i++;
+               break;
+           }
+            t+=s[i];
+        }
+        for(;i<s.size();i++){
+            if(s[i]==')'){
+                break;
+            }
+            a+=s[i];
+        }
+        i=20;
+        while((i--)&&(a.size())){
+            t+=a;
+        }
+        return stod(t);
+
+        
+    }
+    bool isRationalEqual(string s, string t) {
+       return (abs(getdouble(s)-getdouble(t))<1e-9);
+        
+    }
+};

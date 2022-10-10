@@ -1,0 +1,87 @@
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        ListNode*temp=head;
+        vector<int>v;
+        while(temp){
+            v.push_back(temp->val);
+            temp=temp->next;
+        }
+        int i=v.size()-1,j=i;
+        int num=0;
+        while(i>=0){
+            num+=pow(2,j-i)*v[i--];
+        }
+        return num;
+    }
+};
+
+2.linear time constant space
+
+class Solution {
+public:
+    int findLen(ListNode*temp){
+        int cnt=0;
+        while(temp){
+            cnt++;
+            temp=temp->next;
+        }
+        return cnt;
+    }
+    int getDecimalValue(ListNode* head) {
+        ListNode*temp=head;
+      int x =findLen(temp);
+        int i=x-1;
+        int j=0;
+           int num=0;
+        while(temp){
+           num+=pow(2,i-j)*temp->val;
+            j++;
+            temp=temp->next;
+        }
+ 
+/* also can use  this 
+
+
+int powOfTwo=pow(2,len-1);
+     int ans=0;
+     ListNode* temp=head;
+    
+    
+       while(temp)
+       {
+           ans += powOfTwo*temp->val;
+           temp=temp->next;
+           
+           powOfTwo = powOfTwo/2;
+       }
+
+*/
+
+
+
+
+      
+        return num;
+    }
+};
+
+3 .Recursive
+
+class Solution {
+public:
+     int cnt;
+    int getDecimalValue(ListNode* head) {
+        
+        if(!(head->next)){
+            cnt=1;
+            return head->val;
+        }
+        int x=getDecimalValue(head->next);
+        cnt*=2;
+        
+
+      
+        return x+(cnt*head->val);
+    }
+};

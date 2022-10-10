@@ -1,0 +1,37 @@
+class Solution {
+public:
+    void helper(vector<int>&candidates,int si,int n,int target,vector<vector<int>>&ans, vector<int>v){
+    
+        if(si==n){
+            if(target==0){
+                ans.push_back(v);
+           
+            }
+            
+            return;
+        }
+       
+        helper(candidates,si+1,n,target,ans,v);
+
+
+
+// this if condition is necessary here otherwise tle by compilire
+         
+
+
+
+
+if(candidates[si]<=target){
+        v.push_back(candidates[si]);
+        helper(candidates,si,n,target-candidates[si],ans,v);
+         }
+        return;
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+           vector<int>v;
+        helper(candidates,0,candidates.size(),target,ans,v);
+        return ans;
+        
+    }
+};

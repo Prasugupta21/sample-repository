@@ -1,0 +1,56 @@
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        int i=0,j=s.size()-1;
+        while(i<j){
+            swap(s[i++],s[j--]);
+        }
+        return ;
+    }
+};
+
+Another way this is faster
+
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        int i=0,j=s.size()-1;
+        while(i<j){
+          if(s[i]==s[j]){
+              i++;
+              j--;
+          }
+            else{
+                swap(s[i++],s[j--]);
+            }
+        }
+        return ;
+    }
+};
+
+Recursive Approach
+
+
+class Solution {
+public:
+    void   reverseStringHelper(int i,int j,vector<char>& s){
+        if(i>=j){
+            return;
+        }
+           
+     if(s[i]==s[j]){
+          reverseStringHelper(i+1,j-1,s);
+    }
+        else{
+            swap(s[i],s[j]);
+            reverseStringHelper(i+1,j-1,s); 
+        }
+    }
+    void reverseString(vector<char>& s) {
+   
+         reverseStringHelper(0,s.size()-1,s);
+     
+        
+       
+    }
+};

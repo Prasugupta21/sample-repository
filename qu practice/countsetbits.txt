@@ -1,0 +1,26 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    // Write C code here
+ int count_setbits(int);
+int n;
+scanf("%d" ,&n);
+int x =count_setbits(n);
+printf("%d\n",x);
+
+
+    return 0;
+}
+int count_setbits(int N)
+{ 
+   int cnt=0;
+
+   while(N>0)
+   {
+       cnt+=(N&1);
+       N=N>>1;
+   }
+
+   return cnt;
+}

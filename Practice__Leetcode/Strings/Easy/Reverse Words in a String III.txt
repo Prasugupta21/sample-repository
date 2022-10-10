@@ -1,0 +1,93 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        string s1="";
+        map<char,int>m;
+        for(auto x :s){
+            m[x]++;
+        }
+        int i=0;
+        while(i<s.size()){
+            if(s[i]==' '){
+                int j=i-1;
+                while((j>=0) && (s[j]!=' ')){
+                    s1+=s[j];
+                    j--;
+                    
+                }
+               
+                s1+=" ";
+               
+                
+            }
+            i++;
+        }
+        int k=s.size()-1;
+        if(m.find(' ')!=m.end()){
+            while(s[k]!=' '){
+            s1+=s[k--];
+       
+}
+   
+        }
+                   else{
+                       while(k>=0){
+                             s1+=s[k--];
+            
+                       }
+                   }
+      
+     
+        return s1;
+    }
+};
+
+
+Better Space complexity 
+
+class Solution {
+public:
+string reverseWords(string s)
+{ int l=0,r;
+
+   for(int i=0;i<=s.size();i++)
+   {
+       if(s[i]==' '||s[i]=='\0')
+       {  r=i-1;
+          
+           while(l<r)
+           {
+               swap(s[l],s[r]);
+               l++;
+               r--;
+           }
+        l=i+1;
+           
+       }
+   }
+ return s;
+    
+}
+};
+
+Antoher approach
+
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n = s.size();
+        int i ;
+        int j = 0;
+        for(i = 0 ; i < n ; i++){
+            if(s[i] == ' '){
+                reverse(s.begin()+j , s.begin()+i);
+                j = i+1;
+            }
+            if(i == n-1){
+                reverse(s.begin()+j , s.begin()+i+1);
+            }
+        }    
+       return s; 
+    }
+};

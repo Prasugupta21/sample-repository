@@ -1,0 +1,79 @@
+class Solution {
+public:
+    string firstPalindrome(vector<string>& words) {
+    int k=words.size()-1,flag=0;
+        string s="";
+       
+        while(k>=0){
+            string temp=words[k];
+            int i=0,j=temp.size()-1;
+            while(i<=j){
+                if(temp[i]!=temp[j]){
+                    flag=0;
+                    break;
+                }
+                else{
+                    flag=1;
+                    i++;
+                    j--;
+                }
+            }
+            if(flag){
+                s=temp;
+            }
+            k--;
+        }
+        return s;
+    }
+};   
+
+
+                                                 Same Logic with ANother implementation 
+
+
+class Solution {
+public:
+    string firstPalindrome(vector<string>& words) {
+        string ans;
+        for(string s:words){
+            int l=0;
+            int r=s.size()-1;
+            bool flag=true;
+            while(l<=r){
+                if(s[l]!=s[r]){
+                    flag=false;
+                    l++;
+                    r--;
+                }else{
+                    l++;
+                    r--;
+                }
+        }
+            if(flag){
+               ans=s;
+                break;
+            }else{
+                continue;
+            }
+    }
+        return ans;
+    }      
+};      
+
+                                                   Approach 2
+
+
+class Solution {
+public:
+	string firstPalindrome(vector<string>& words) {
+		string ans="";
+		for(int i=0;i<words.size();i++)
+		{
+			ans=words[i];
+			reverse(ans.begin(),ans.end());
+			if(ans==words[i])
+			  return ans;
+		}
+	return "";
+	}
+};

@@ -1,0 +1,86 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+
+        if(!head){
+            return false;
+        }
+         ListNode*slow=head;
+          ListNode*fast=head;
+        while((fast)&&(fast->next)){
+            slow=slow->next;
+            fast=fast->next->next; 
+            if(slow==fast){
+                return true;
+            }
+        }
+
+       
+        
+                 return false;
+    }
+};
+
+may be this code is correct for unique LL but space complexity is o(n)
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+
+
+   map<int,int>m;
+        ListNode*temp=head;
+        if(!head){
+            return false;
+        }
+         int x=temp->val; 
+        while(temp){
+            if(!m.count(x)){
+               
+                m[x]++;
+                temp=temp->next;
+                if(temp){
+                 x=temp->val; 
+                }
+            }
+            else{
+                return true;
+            }
+            
+        }
+
+       
+        
+                 return false;
+    }
+};
+
+Unordered Map 
+
+bool hasCycle(ListNode *head) {
+	unordered_map<ListNode*,int> m;
+	ListNode* tmp = head;
+	while(tmp != NULL){
+		m[tmp]++;
+		if(m[tmp]>1)
+			return true;
+		tmp=tmp->next;
+	}
+	return false;
+}

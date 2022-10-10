@@ -1,0 +1,119 @@
+
+bool isSafe(int newx,int newy,vector<vector<bool>>&visited,int n,vector < vector < int >> & arr){
+    if((newx>=0 && newx<n) && (newy>=0 && newy<n) && (!(visited[newx][newy])) && (arr[newx][newy])){
+        return true;
+    }
+    return false;
+}
+void solve(int x ,int y ,vector < vector < int >> & arr, int n,vector<string>&ans,vector<vector<bool>>&visited,string path){
+    
+    if(x==n-1 && y==n-1){
+        ans.push_back(path);
+        return;
+    }
+      visited[x][y]=1;
+//   if(  isSafe(x+1,y,visited,n,arr)){
+//       solve(x+1,y,arr,n,ans,visited,path+"D");
+
+//   }
+//       if(  isSafe(x,y-1,visited,n,arr)){
+//       solve(x,y-1,arr,n,ans,visited,path+"L");
+   
+//   }
+//       if(  isSafe(x,y+1,visited,n,arr)){
+//       solve(x,y+1,arr,n,ans,visited,path+"R");
+    
+//   }
+    //       if(  isSafe(x-1,y,visited,n,arr)){
+//       solve(x-1,y,arr,n,ans,visited,path+"R");
+    
+//   }
+
+    
+    
+    //     instead of writing 4 if condition we make a loop 
+    
+    
+
+    vector<pair<int,int>>v{{1,0},{0,-1},{0,1},{-1,0}};
+    string c[4]={"D","L","R","U"};
+    for(int i=0;i<4;i++){
+         if(  isSafe(x+v[i].first,y+v[i].second,visited,n,arr)){
+     solve(x+v[i].first,y+v[i].second,arr,n,ans,visited,path+c[i]);
+      
+ }  
+    }
+    visited[x][y]=0;
+}
+
+
+vector < string > searchMaze(vector < vector < int >> & arr, int n) {
+    // Write your code here.
+    vector<string>ans;
+   vector<vector<bool>>visited(n,vector<bool>(n,0));
+    string path="";
+    if(!(arr[0][0])){
+        return {""};
+    }
+    solve(0,0,arr,n,ans,visited,path);
+    return ans;
+}
+bool isSafe(int newx,int newy,vector<vector<bool>>&visited,int n,vector < vector < int >> & arr){
+    if((newx>=0 && newx<n) && (newy>=0 && newy<n) && (!(visited[newx][newy])) && (arr[newx][newy])){
+        return true;
+    }
+    return false;
+}
+void solve(int x ,int y ,vector < vector < int >> & arr, int n,vector<string>&ans,vector<vector<bool>>&visited,string path){
+    
+    if(x==n-1 && y==n-1){
+        ans.push_back(path);
+        return;
+    }
+      visited[x][y]=1;
+//   if(  isSafe(x+1,y,visited,n,arr)){
+//       solve(x+1,y,arr,n,ans,visited,path+"D");
+
+//   }
+//       if(  isSafe(x,y-1,visited,n,arr)){
+//       solve(x,y-1,arr,n,ans,visited,path+"L");
+   
+//   }
+//       if(  isSafe(x,y+1,visited,n,arr)){
+//       solve(x,y+1,arr,n,ans,visited,path+"R");
+    
+//   }
+    //       if(  isSafe(x-1,y,visited,n,arr)){
+//       solve(x-1,y,arr,n,ans,visited,path+"R");
+    
+//   }
+
+    
+    
+    //     instead of writing 4 if condition we make a loop 
+    
+    
+
+    vector<pair<int,int>>v{{1,0},{0,-1},{0,1},{-1,0}};
+    string c[4]={"D","L","R","U"};
+    for(int i=0;i<4;i++){
+         if(  isSafe(x+v[i].first,y+v[i].second,visited,n,arr)){
+     solve(x+v[i].first,y+v[i].second,arr,n,ans,visited,path+c[i]);
+      
+ }  
+    }
+    visited[x][y]=0;
+}
+
+
+vector < string > searchMaze(vector < vector < int >> & arr, int n) {
+    // Write your code here.
+    vector<string>ans;
+   vector<vector<bool>>visited(n,vector<bool>(n,0));
+    string path="";
+    if(!(arr[0][0])){
+        return {""};
+    }
+    solve(0,0,arr,n,ans,visited,path);
+    return ans;
+}

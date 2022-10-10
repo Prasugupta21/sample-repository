@@ -1,0 +1,93 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if((!head )|| !(head->next)){
+            return head;
+        }
+        ListNode*temp=head;
+        while(temp->next){
+            while((temp->val==temp->next->val)&&(temp->next)){
+                ListNode*b=temp->next->next;
+                ListNode*a=temp->next;
+                temp->next=b;
+                delete a;
+                if(!(temp->next)){
+                    break;
+                }
+                
+            }
+                if(!(temp->next)){
+                    break;
+                }
+            temp=temp->next;
+        }
+        return head;
+    }
+};
+
+Another IMPLEMENTATION
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if((!head )|| !(head->next)){
+            return head;
+        }
+        ListNode*temp=head;
+        while(temp->next){
+           if(temp->val==temp->next->val){
+                ListNode*b=temp->next->next;
+                    ListNode*a=temp->next;
+                temp->next=b;
+                delete a;
+        
+                
+            }
+            else{
+            temp=temp->next;
+
+            }
+               
+        }
+        return head;
+    }
+};
+
+Recursive 
+
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+       
+        if(!head){
+            return head;
+        }
+    
+        ListNode*currHead=removeElements(head->next,val);
+        head->next=currHead;
+
+
+// instead of above two lines also can write 
+      //  head->next=removeElements(head->next,val);
+
+
+
+        if(head->val==val){
+              ListNode*temp=head;
+            delete temp;
+            return currHead;
+        }
+       
+        return head;
+    }
+};

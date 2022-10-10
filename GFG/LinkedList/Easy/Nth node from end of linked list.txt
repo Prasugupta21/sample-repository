@@ -1,0 +1,31 @@
+int findLen(Node *temp){
+    int cnt=0;
+    while(temp){
+        cnt++;
+        temp=temp->next;
+    }
+    return cnt;
+}
+int getNthFromLast(Node *head, int n)
+{
+    Node*temp=head;
+  
+    int l=findLen(head);
+    int i=l-n;
+    if(i<0){
+        return -1;
+    }
+    if(!i){
+        return head->data;
+    }
+    while(temp){
+ 
+        temp=temp->next;
+        i--;
+        if(!i){
+            return temp->data;
+        }
+    }
+    return 1;
+       // Your code here
+}

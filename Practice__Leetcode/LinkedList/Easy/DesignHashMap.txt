@@ -1,0 +1,125 @@
+class MyHashMap {
+public:
+    vector<int> map;
+    MyHashMap() {
+        map.resize(1000001,-1);
+    }
+    
+    void put(int key, int value) {
+        map[key] = value;
+    }
+    
+    int get(int key) {
+        return map[key];
+    }
+    
+    void remove(int key) {
+        map[key] = -1;
+    }
+};
+
+2.approach
+class MyHashMap {
+public:
+    unordered_map<int,int>m;
+    MyHashMap() {
+        
+    }
+    
+    void put(int key, int value) {
+        m[key]=value;
+    }
+    
+    int get(int key) {
+        if(m.find(key)!=m.end()){
+        return m[key];
+        }
+        return -1;
+    }
+    
+    void remove(int key) {
+        auto it=m.find(key);
+        if(it!=m.end()){
+        m.erase(it);
+        }
+    }
+};
+
+
+Chaining technick for larger size(greater than 1e7)
+class MyHashMap {
+public:
+   vector<list<pair<int,int>>>m;
+    int size;
+    MyHashMap() {
+     size=1e6+1;
+        m.resize(size);
+    }
+    int hash(int key){
+        return key%size;
+    }
+    list<pair<int,int>>::iterator search(int key){
+        int i=hash(key);
+        list<pair<int,int>>::iterator it=m[i].begin();
+        while(it!=m[i].end()){
+            if(it->first==key){
+                return it;
+            }
+            it++;
+        }
+        return it;
+        
+    }
+    void put(int key, int value) {
+        int i=hash(key);
+        remove(key);
+        m[i].push_back({key,value});
+    }
+
+// also implement  put function  in this way
+
+  /* void put(int key, int value) {
+        int i=hash(key);
+      auto it=search(key);
+      
+        if(it!=m[i].end()){
+        it->second=value;
+            return;
+        }
+      m[i].push_back({key,value});
+*/
+        
+       
+       
+    } 
+    
+    int get(int key) {
+        int i=hash(key);
+        auto it=search(key);
+        if(search(key)!=m[i].end())
+       {
+            return it->second;
+        
+        }
+        return -1;
+    }
+    
+    void remove(int key) {
+        int i=hash(key);
+        if(search(key)==m[i].end()){
+            return;
+        }
+        auto it=search(key);
+       
+        m[i].erase(it);
+        
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */

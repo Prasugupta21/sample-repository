@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int longestDecomposition(string t) {
+        int i=0,cnt=0;
+ //also can decare int j=t.size() -1 
+        string l="",r="";
+        while(i<t.size()){
+            l+=t[i];
+            r=t[t.size()-1-i]+r;// if we declare j then in this step can write  r=t[j--]+r; so in while condition ((i<t.size() &&(j>=0))
+            if(l==r){
+                cnt++;
+                l="";
+                r="";
+            }
+            i++;
+        }
+        return cnt;
+    }
+};

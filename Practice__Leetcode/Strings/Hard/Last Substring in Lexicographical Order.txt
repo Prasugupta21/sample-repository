@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string lastSubstring(string s) {
+        int maxind=s.size()-1;
+        for(int i=s.size()-1;i>=0;i--){
+            if(s[i]>s[maxind]){
+                maxind=i;
+            }
+            else if(s[i]==s[maxind]){
+                int j=i+1;
+                int k=maxind+1;
+                while((j<maxind)&&(k<s.size())&&(s[j]==s[k])){
+                    j++;
+                    k++;
+                }
+                if((j==maxind)||(k==s.size())||(s[j]>s[k])){
+                    maxind=i;
+                }
+                    
+            }
+        }
+        return s.substr(maxind);
+    }
+};

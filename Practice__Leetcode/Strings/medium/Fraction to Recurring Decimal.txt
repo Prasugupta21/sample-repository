@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string fractionToDecimal(int numerator, int denominator) {
+     string ans="";
+        map<int,int>m;
+        if(((numerator<0)&& (denominator>0))||((numerator>0) && (denominator<0))){
+            ans+="-";
+        }
+    long long n=abs(numerator);
+        long long d=abs(denominator);
+        ans+=to_string(n/d);
+        long r=n%d;
+        
+        if(!r){
+            return ans;
+        }
+        else{
+            ans+=".";
+            while(r){
+                if(m.find(r)!=m.end()){
+                    ans.insert(m[r],"(");
+                    ans.push_back(')');
+                    return ans;
+                }
+                else{
+                    m[r]=ans.size();
+                    r*=10;
+                    ans+=to_string(r/d);
+                    r%=d;
+                    
+                }
+            }
+        }
+        return ans;
+    }
+};

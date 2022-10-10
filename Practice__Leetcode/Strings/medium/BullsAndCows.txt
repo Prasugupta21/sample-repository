@@ -1,0 +1,125 @@
+class Solution {
+public:
+    string getHint(string s, string g) {
+        int cnt1=0,cnt2=0;
+        map<int,int>m1,m2;
+        string ans="";
+        
+        
+        for(auto x : s){
+            m1[x-'0']++;
+        }
+        for(auto x:g){
+            m2[x-'0']++;
+        }
+        int i=0,j=0;
+        while(i<s.size()){
+            if(s[i]==g[i]){
+                cnt1++;
+                m1[s[i]-'0']--;
+                m2[g[i]-'0']--;
+            }
+            i++;
+        }
+        sort(s.begin(),s.end());
+         sort(g.begin(),g.end());
+        i=0;
+        while((i<s.size())&&(j<g.size())){
+            if((s[i]==g[j])&& (m1[s[i]-'0'] && m2[g[j]-'0'])){
+                cnt2++;
+                     m1[s[i]-'0']--;
+                m2[g[j]-'0']--;
+                i++;
+                j++;
+            }
+            else if(s[i]>g[j]){
+                j++;
+                
+            }
+            else{
+                i++;
+            }
+        }
+        ans+=to_string(cnt1)+"A"+to_string(cnt2)+"B";
+      
+        return ans;
+       
+    }
+};
+
+Better Approach
+
+
+string getHint(string secret, string guess) {
+        int bull = 0;
+        int cow = 0;
+        unordered_map<char, int> um1, um2;
+        for (int i = 0; i < secret.size(); i++)
+        {
+            if (secret[i] == guess[i]) bull++;
+            else
+            {
+                um1[secret[i]]++;
+                um2[guess[i]]++;
+            }
+        }
+        
+        for (char c = '0'; c <= '9'; c++)
+        {
+            cow += min(um1[c], um2[c]);
+        }
+        
+        return std::to_string(bull) + 'A' + std::to_string(cow) + 'B';
+    }
+
+
+                                                                     
+
+
+
+                                                              Same logic another implementation
+
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        
+        int n = secret.size();
+        
+        // count the frequency of characters of secret
+        
+        unordered_map<char, int> mp;
+        
+        int bulls = 0;
+        
+        int cows = 0;
+        
+        for(int i = 0; i < n; i++)
+        {
+            if(secret[i] == guess[i])
+            {
+                bulls++;
+            }
+            else
+            {
+                mp[secret[i]]++;
+            }
+        }
+        
+        // count the no. of cows
+        
+        for(int i = 0; i < n; i++)
+        {
+            if(secret[i] != guess[i])
+            {
+                if(mp[guess[i]] > 0)
+                {
+                    cows++;
+                    
+                    mp[guess[i]]--;
+                }
+            }
+        }
+        
+        return to_string(bulls) + "A" + to_string(cows) + "B";
+    }
+};

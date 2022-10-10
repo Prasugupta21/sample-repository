@@ -1,0 +1,101 @@
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        int cnt=0;
+        
+        map<char,int>m;
+        for(auto x:s){
+            m[x]++;
+        }
+        for(auto x:t){
+            m[x]--;
+           
+        }
+      for(auto x:m){
+          if(x.second<0){
+              cnt+=abs(x.second);
+          }
+      }
+        return cnt;
+       
+    }
+};
+
+
+Same logic
+
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        int cnt=0;
+        auto it1=s.begin();
+        auto it2=t.begin();
+      
+        
+        map<char,int>m;
+       
+      while(it1!=s.end()){
+          m[*(it1)]++;
+          it1++;
+      }
+         while(it2!=t.end()){
+          m[*(it2)]--;
+          it2++;
+      }
+     auto it3=m.begin();
+       
+      while(it3!=m.end()){
+          if(it3->second<0){
+              cnt+=abs(it3->second);
+          }
+          it3++;
+      }
+        return cnt;
+       
+    }
+};
+
+Other APproach
+
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        unordered_map<char, int> m;
+        int i=0, n=s.size();
+        while(i<n)
+        {
+            m[s[i]]++;
+            m[t[i]]--;
+            i++;
+        }
+        int count=0;
+        for(auto a:m)
+        {
+            if(a.second>0) count+=a.second;
+        }
+        return count;
+    }
+};
+
+Above Logic Another Implementation
+
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        int m[26] = {0};
+        int ans = 0;
+        
+        for(int i=0; i<s.length(); i++){
+            m[s[i] - 'a']++;
+            m[t[i] - 'a']--;
+        }
+        
+        for(int i=0; i<26; i++){
+            if(m[i] > 0){
+                ans = ans + m[i];
+            }
+        }
+        
+        return ans;
+    }
+};

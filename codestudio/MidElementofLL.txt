@@ -1,0 +1,94 @@
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+       class Node 
+        { 
+        public:
+            int data;
+            Node *next;
+            Node(int data) 
+            {
+               this->data = data;
+              this->next = NULL;
+            }
+        };
+
+*****************************************************************/
+int FindLength(Node *head){
+    Node*temp=head;
+    int cnt=0;
+    while(temp){
+        if(temp->data!=-1){
+            cnt++;
+        }
+        temp=temp->next;
+    }
+    return cnt;
+}
+Node *findMiddle(Node *head) {
+    
+
+int cnt=0;
+    int x=FindLength(head);
+    int i;
+    if(x%2){
+        i=(x-1)/2;
+    }
+    else{
+        i=x/2;
+    }
+Node*temp=head;
+
+while((cnt<=i-1) &&(temp) ){
+    temp=temp->next;
+   cnt++;
+}
+return temp;
+}
+
+
+2nd Approach 
+
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+       class Node 
+        { 
+        public:
+            int data;
+            Node *next;
+            Node(int data) 
+            {
+               this->data = data;
+              this->next = NULL;
+            }
+        };
+
+*****************************************************************/
+
+Node *findMiddle(Node *head) {
+    
+
+
+  
+
+    Node*slow=head;
+    Node*fast=head->next;
+
+while((fast)&&(fast->next) ){
+    slow=slow->next;
+ fast=fast->next->next;
+}
+  if(!fast){
+      return slow;
+  }
+return slow->next;
+}
+
+

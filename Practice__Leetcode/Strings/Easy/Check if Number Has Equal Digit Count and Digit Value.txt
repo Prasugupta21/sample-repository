@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool digitCount(string num) {
+        map<int,int>m;
+        int i=0;
+        
+    while(i<num.size()){
+        m[num[i]-'0']++;
+        i++;
+    }
+      i=0;
+        while(i<num.size()){
+           
+            if((m[i]!=(num[i])-'0')){
+                return false;
+            }
+            i++;
+        }
+        return true;
+        
+    }
+};

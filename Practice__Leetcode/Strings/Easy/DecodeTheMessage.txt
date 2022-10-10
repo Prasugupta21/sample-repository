@@ -1,0 +1,61 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        string s;
+        unordered_map<char,char>m;
+        int a='a';// also can write char a ='a';
+
+        for (auto x : key){
+
+            if((int(x)>=97 && int(x)<=122) &&( m.find(x)==m.end())){
+                m[x]=a++;
+            }
+            
+        }
+        for(auto x : message){
+            if(!(int(x)>=97 && int(x)<=122)){
+                s+=" ";
+            }
+            else{
+            
+                s+=m[x];
+            }
+        }
+        return s;
+    }
+};
+
+
+                                        Approach 2
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        map<char, char> keyMap;
+        string alphabets = "abcdefghijklmnopqrstuvwxyz";
+        keyMap[' '] = ' ';
+        int index = 0;
+        for(int i = 0; i < key.size(); i++){
+            if(keyMap[key[i]] == 0){
+                keyMap[key[i]] = alphabets[index];
+                index++;
+            }
+        }
+        
+        for(int i = 0; i<message.size();i++){
+            message[i] = keyMap[message[i]];
+        }
+        
+        return message;
+    }
+};

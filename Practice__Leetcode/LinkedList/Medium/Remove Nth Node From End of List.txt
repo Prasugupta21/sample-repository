@@ -1,0 +1,84 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int findLen(ListNode*temp){
+        int cnt=0;
+        while(temp){
+
+        cnt++;
+        temp=temp->next;
+        }
+        return cnt;
+    }
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode*temp=head;
+        int l=findLen(head);
+        int i=l-n;
+        if(!(head->next)){
+            return NULL;
+        }
+        if(!i){
+            ListNode *x=temp->next;
+            delete temp;
+            return x;
+        }
+        while((temp)&&(i!=1) ){
+            temp=temp->next;
+            i--;
+            if(i==1){
+                break;
+            }
+            
+        }
+
+        ListNode*a=temp->next;
+        temp->next=temp->next->next;
+        delete a;
+      
+        return head;
+  
+
+
+  }
+};
+
+
+//Better Approach
+
+class Solution {
+public:
+    
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode*slow=head;
+        ListNode*fast=head;
+        int i=0;
+        while(i<n){
+            fast=fast->next;
+            i++;
+        }
+        if(!fast){
+            ListNode*y=slow->next;
+            delete slow;
+            return y;
+        }
+        
+        while(fast->next){
+            slow=slow->next;
+            fast=fast->next;
+        }
+        ListNode*a=slow->next;
+        slow->next=slow->next->next;
+        delete a;
+       
+        return head;
+    }
+};

@@ -1,0 +1,103 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        if((!(head->next))||((!(head->next->next)))){
+            return;
+        }
+        vector<pair<int,ListNode*>>v1;
+        vector<pair<int,ListNode*>>v2;
+        
+        ListNode*temp=head;
+        while(temp){
+            v1.push_back({temp->val,temp});
+            temp=temp->next;
+            
+        }
+        int i=0,j=v1.size()-1;
+        while(i<=j){
+            v2.push_back({v1[i++]});
+             v2.push_back({v1[j--]});
+        }
+        i=1;
+        temp=head;
+        while(i<v2.size()){
+            temp->next=v2[i++].second;
+            temp=temp->next;
+        }
+        temp->next=NULL;
+        return;
+        
+    }
+};
+
+
+
+
+// constant space
+
+class Solution {
+public:
+    ListNode*reverse(ListNode*temp){
+        ListNode*prev=NULL,*curr=temp;
+        while(curr){
+            ListNode*nex=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nex;
+           
+            
+        }
+        return prev;
+    }
+    void reorderList(ListNode* head) {
+        if((!(head->next))||((!(head->next->next)))){
+            return;
+        }
+       ListNode*slow=head,*fast=head,*temp=head;
+        while((fast)&&(fast->next)){
+            slow=slow->next;
+            fast=fast->next->next;
+            
+            
+            
+        }
+        ListNode*sec=reverse(slow->next);
+        slow->next=sec;
+        ListNode*first=head;
+        ListNode*dummy=new ListNode(0);
+        dummy->next=head;
+        ListNode*tail=dummy;
+        int flag=1;
+        
+        while(sec){
+            if(flag){
+                tail->next=first;
+                first=first->next;
+                tail=tail->next;
+                flag=0;
+            }
+            else{
+                tail->next=sec;
+                sec=sec->next;
+                tail=tail->next;
+                flag=1;
+                
+            }
+        }
+        slow->next=NULL;
+        tail->next=first;
+        return;
+        
+        
+    }
+};

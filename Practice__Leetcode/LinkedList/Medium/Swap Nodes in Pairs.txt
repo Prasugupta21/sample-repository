@@ -1,0 +1,71 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if((!head)||(!(head->next))){
+            return head;
+        }
+        ListNode*temp=head;
+        ListNode*a=temp->next->next;
+        ListNode*b=temp->next;
+        temp->next=a;
+       b->next=temp;
+        temp=b;
+      
+      ListNode*node =swapPairs(temp->next->next);
+        temp->next->next=node;
+        return temp;
+    }
+};
+
+
+2nd implementation less space
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if((!head)||(!(head->next))){
+            return head;
+        }
+        ListNode*temp=head->next;
+       
+      
+      ListNode*node =swapPairs(head->next->next);
+       head->next=node;
+        temp->next=head;
+        return temp;
+    }
+};
+
+
+Iterative 
+
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if((!head)||(!(head->next))){
+            return head;
+        }
+        ListNode*dummy=new ListNode();
+       
+        ListNode*prev=dummy;
+        ListNode*curr=head;
+        while((curr)&&(curr->next)){
+            prev->next=curr->next;
+            curr->next=prev->next->next;
+            prev->next->next=curr;
+            prev=curr;
+            curr=curr->next;
+        }
+        return dummy->next;
+    }
+};

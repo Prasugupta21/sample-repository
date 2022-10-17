@@ -1,0 +1,149 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int findLen(ListNode*temp){
+        int cnt=0;
+        while(temp){
+            cnt++;
+            temp=temp->next;
+            
+        }
+        return cnt;
+    }
+    ListNode* rotateRight(ListNode* head, int k) {
+        if((!head)||(!(head->next))){
+            return head;
+        }
+           
+          vector<ListNode*>v;
+          ListNode*temp=head;
+           while(temp){
+               v.push_back(temp);
+               temp=temp->next;
+           }
+           int i=v.size()-1;
+           int l=findLen(head);
+           int x=k%l;
+          ListNode*dummy=new ListNode(0,head);
+
+// dont need to put condition i>=1
+
+           while((x--)&&(i>=1)){  
+               ListNode*a=dummy->next;
+               dummy->next=v[i--];
+               v[i+1]->next=a;
+               v[i]->next=NULL;
+               
+           }
+           return dummy->next;
+    }
+};
+
+
+//constant space
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int findLen(ListNode*temp){
+        int cnt=0;
+        while(temp){
+            cnt++;
+            temp=temp->next;
+            
+        }
+        return cnt;
+    }
+    ListNode* rotateRight(ListNode* head, int k) {
+        if((!head)||(!(head->next))){
+            return head;
+        }
+           
+
+          ListNode*temp=head;
+          int l=findLen(head);
+           while(temp->next){
+             
+               temp=temp->next;
+           }
+           
+         
+        temp->next=head;
+        int x=k%l;
+        x=l-x;
+          
+           while((x--)){
+              temp=temp->next;
+           }
+
+head=temp->next;
+        temp->next=NULL;
+               return head;
+                          }
+};
+
+
+//Same Logic and implementation but due to some if conditions it is faster
+
+class Solution {
+public:
+    int findLen(ListNode*temp){
+        int cnt=0;
+        while(temp){
+            cnt++;
+            temp=temp->next;
+            
+        }
+        return cnt;
+    }
+    ListNode* rotateRight(ListNode* head, int k) {
+        if((!head)||(!(head->next))){
+            return head;
+        }
+           
+   
+          ListNode*temp=head;
+          int l=findLen(head);
+        if(k>l){
+        k=k%l;
+        }
+        if((k==l)||(k==0)){
+            return head;
+        }
+           while(temp->next){
+             
+               temp=temp->next;
+           }
+           
+         
+        temp->next=head;
+
+        k=l-k;
+          
+           while((k--)){
+              temp=temp->next;
+           }
+
+head=temp->next;
+        temp->next=NULL;
+               return head;
+                          }
+};

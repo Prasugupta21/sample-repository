@@ -1,0 +1,103 @@
+class Solution {
+public:
+    
+    ListNode *merge(ListNode*h1,ListNode*h2){
+        ListNode*fh=NULL,*ft=NULL;
+        while((h1)&&(h2)){
+            if(h1->val<=h2->val){
+                if((!(fh))&&(!(ft))){
+                    fh=h1;
+                    ft=h1;
+                }
+                else{
+                    ft->next=h1;
+                    ft=h1;
+                    
+                }
+                h1=h1->next;
+            }
+        
+             else{
+                if((!(fh))&&(!(ft))){
+                    fh=h2;
+                    ft=h2;
+                }
+                else{
+                    ft->next=h2;
+                    ft=h2;
+                    
+                }
+                h2=h2->next;
+            
+        }
+        }
+        if(h1){
+            ft->next=h1;
+        }
+        if(h2){
+            ft->next=h2;
+        }
+        return fh;
+    }
+    ListNode*findMid(ListNode*temp){
+        ListNode*slow=temp,*fast=temp->next;
+        while((fast)&&(fast->next)){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+    ListNode* sortList(ListNode* head) {
+        if((!head)||(!(head->next))){
+            return head;
+        }
+        ListNode*mid=findMid(head);
+        ListNode*temp=mid->next;
+        mid->next=NULL;
+        ListNode*first=sortList(head);
+         ListNode*second=sortList(temp);
+        return merge(first,second);
+    }
+};
+
+// here another method of merge function 
+
+ListNode* mergelist(ListNode *l1, ListNode *l2)
+    {
+        ListNode *ptr = new ListNode(0);
+        ListNode *curr = ptr;
+        
+        while(l1 != NULL && l2 != NULL)
+        {
+            if(l1->val <= l2->val)
+            {
+                curr -> next = l1;
+                l1 = l1 -> next;
+            }
+            else
+            {
+                curr -> next = l2;
+                l2 = l2 -> next;
+            }
+        
+        curr = curr ->next;
+        
+        }
+        
+        //for unqual length linked list
+        
+        if(l1 != NULL)
+        {
+            curr -> next = l1;
+            l1 = l1->next;
+        }
+        
+        if(l2 != NULL)
+        {
+            curr -> next = l2;
+            l2 = l2 ->next;
+        }
+        
+        return ptr->next;
+    }
+};

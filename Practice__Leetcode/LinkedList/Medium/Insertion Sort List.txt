@@ -1,0 +1,92 @@
+//Brute Force
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(!(head->next)){
+            return head;
+        }
+        ListNode*temp=head;
+        vector<pair<int,ListNode*>>v;
+        while(temp){
+            v.push_back({temp->val,temp});
+            temp=temp->next;
+            
+        }
+        int n=v.size(),i=1,j;
+        while(i<n){
+            auto p=v[i];
+            j=i-1;
+            while(j>=0){
+                if(v[j].first>p.first){
+                    v[j+1]=v[j];
+                  
+                }
+                else{
+                    break;
+                }
+                  j--;
+            }
+            v[j+1]=p;
+            i++;
+        }
+        head=v[0].second;
+        temp=head;
+        i=1;
+        while(i<v.size()){
+            temp->next=v[i++].second;
+            temp=temp->next;
+        }
+        temp->next=NULL;
+        
+        return head;
+        
+    }
+};
+
+//Better 
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(!(head->next)){
+            return head;
+        }
+        ListNode*dummy=new ListNode(3);
+        while(head){
+            ListNode*nex=head->next;
+             ListNode*temp=dummy;
+            while((temp->next)&&(temp->next->val<head->val)){
+                temp=temp->next;
+            }
+            head->next=temp->next;
+            temp->next=head;
+            head=nex;
+            
+        }
+        return dummy->next;
+     
+        
+        
+    }
+};

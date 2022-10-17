@@ -1,0 +1,64 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int findLen(ListNode*temp){
+        int cnt=0;
+        while(temp){
+            cnt++;
+            temp=temp->next;
+        }
+        return cnt;
+    }
+    ListNode* deleteMiddle(ListNode* head) {
+        if(!(head->next)){
+            return NULL;
+        }
+        ListNode*temp=head;
+        int l=findLen(head);
+        int i=l/2,cnt=0;
+        while(cnt<i-1){
+            temp=temp->next;
+            cnt++;
+        }
+        ListNode*a=temp->next;
+        temp->next=a->next;
+        delete a;
+        return head;
+    }
+};
+
+// 2nd Approach
+
+class Solution {
+public:
+
+    ListNode* deleteMiddle(ListNode* head) {
+        if(!(head->next)){
+            return NULL;
+        }
+        ListNode*slow=head,*prev=NULL,*fast=head;
+       while((fast)&&(fast->next)){
+           prev=slow;
+           slow=slow->next;
+           fast=fast->next->next;
+       }
+
+
+ // if(slow == fast) head = NULL;
+
+// if in starting of the function if dont want put condition if(!(head->next)) then we can put condition in above line 
+        prev->next=slow->next;
+        delete slow;
+        
+        return head;
+    }
+};

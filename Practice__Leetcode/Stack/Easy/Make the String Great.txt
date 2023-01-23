@@ -1,0 +1,79 @@
+1st approach
+
+class Solution {
+public:
+    string makeGood(string s) {
+        // if s has less than 2 characters, we just return itself.
+        while (s.size() > 1) {
+            // 'find' records if we find any pair to remove.
+            bool find = false;
+            
+            // Check every two adjacent characters, currChar and nextChar.
+            for (int i = 0; i < s.size() - 1; ++i) {
+                char currChar = s[i], nextChar = s[i + 1];
+                
+                // If they make a pair, remove them from 's' and let 'find = true'.
+                if (abs(currChar - nextChar) == 32) {
+                    s = s.substr(0, i) + s.substr(i + 2);
+                    find = true;
+                    break;
+                }
+            }
+            
+            // If we cannot find any pair to remove, break the loop. 
+            if (!find)
+                break;
+        }
+        return s;
+    }
+};
+
+
+2nd Approach Recursion
+
+class Solution {
+public:
+    string makeGood(string s) {  
+        // If the string is emtpy, just return it.
+        if (s.empty()) 
+            return s;
+        
+        // If we find a pair in 's', remove this pair from 's'
+        // and solve the remaining string recursively.
+        for (int i = 0; i < s.size() - 1; ++i) {
+            if (abs(s[i] - s[i + 1]) == 32)
+                return  makeGood(s.substr(0, i) + s.substr(i + 2));
+        }
+
+        // Base case, if we can't find a pair, just return 's'.
+        return s;
+    }
+};
+
+
+approach 3 Stack
+
+class Solution {
+public:
+    string makeGood(string s) {
+        stack<char>s1;
+        string ans;
+        int i=0;
+        while(i<s.size()){
+            if((s1.size())&&(((int)s1.top()==s[i]+32)||((int)s1.top()==s[i]-32))){
+                s1.pop();
+            }
+            else{
+            s1.push(s[i]);
+            }
+            i++;
+        }
+        while(s1.size()){
+            ans+=s1.top();
+            s1.pop();
+        }
+        reverse(ans.begin(),ans.end());
+
+        return ans;
+    }
+};

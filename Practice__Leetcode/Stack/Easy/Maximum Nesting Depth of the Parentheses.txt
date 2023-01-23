@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int maxDepth(string s) {
+        int balanced=0,ans=0;
+        for(auto x :s){
+            if(x=='('){
+                ++balanced;
+                ans=max(ans,balanced);
+            }
+            else if(x==')'){
+                --balanced;
+            }
+        }
+        return ans;
+    }
+};
+
+//stack Approch
+
+class Solution {
+public:
+    int maxDepth(string s) {
+        int ans=0;
+        stack<char>s1;
+        for(auto x :s){
+            if(x=='('){
+                s1.push(x);
+                int y=s1.size();
+                ans=max(ans,y);
+            }
+            else if(x==')'){
+                s1.pop();
+            }
+        }
+        return ans;
+    }
+};

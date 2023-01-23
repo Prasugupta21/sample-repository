@@ -1,0 +1,37 @@
+
+
+class Solution {
+
+    
+public:
+int evalute(int x,int y,string o){
+if(o=="+"){
+    return x+y;
+}
+else if(o=="-"){
+    return y-x;
+}
+else if (o=="*"){
+    return x*y;
+}
+
+    return y/x;
+
+}
+    int evalRPN(vector<string>& tokens) {
+        stack<int>s;
+        for(auto o:tokens){
+          if((o=="+")||(o=="-")||(o=="*")||(o=="/")){
+              int x=s.top();
+              s.pop();
+              int y=s.top();
+              s.pop();
+              s.push(evalute(x,y,o));
+          }
+          else{
+              s.push(stoi(o));
+          }
+        }
+    return s.top();
+    }
+};

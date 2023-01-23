@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& p) {
+        vector<int>v;
+        int flag;
+        for(int i=0;i<p.size();i++){
+            int x=p[i];
+            flag=0;
+            for(int j=i+1;j<p.size();j++){
+                if(p[j]<=x){
+                    v.push_back(x-p[j]);
+                    flag=1;
+                    break;
+                }
+            }
+            if((!flag)){
+                v.push_back(x);
+            }
+        }
+        return v;
+    }
+
+
+//BETTER WITH STACK
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& p) {
+        vector<int>v(p.size(),0);
+     stack<int>s;
+        for(int i=p.size()-1;i>=0;i--){
+            while(((!s.empty()))&&(s.top()>p[i])){
+                s.pop();
+            }
+            if(s.empty()){
+                v[i]=p[i];
+                s.push(p[i]);
+            }
+            else{
+                v[i]=p[i]-s.top();
+                s.push(p[i]);
+            }
+
+        }
+        return v;
+    }
+};
+
+
+};

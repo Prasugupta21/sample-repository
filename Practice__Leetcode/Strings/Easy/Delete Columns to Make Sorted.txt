@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minDeletionSize(vector<string>& s) {
+        int r=s[0].size(),cnt=0;
+     for(int i=0;i<r;i++)   {
+         for(int j=0;j<s.size()-1;j++){
+            int k=j+1;
+            if(s[j][i]>s[k][i]){
+                cnt++;
+                break;
+            }
+         }
+     }
+     return cnt;
+    }
+};

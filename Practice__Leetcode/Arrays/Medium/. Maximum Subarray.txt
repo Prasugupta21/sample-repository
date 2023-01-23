@@ -1,0 +1,61 @@
+/*TLE*/
+
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxSum=INT_MIN;
+    for(int i=0;i<nums.size();i++){
+        int currsum=0;
+        for(int j=i;j<nums.size();j++){
+            currsum+=nums[j];
+            if(currsum>maxSum){
+                maxSum=currsum;
+            }
+        }
+    }
+    return maxSum;
+    }
+};
+
+2nd Approach
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int currsum=nums[0];
+        int currmax=nums[0];
+        int i=1;
+        while(i<nums.size())
+        {
+            int prevcurrmax=currmax;
+            currmax=max(nums[i],nums[i]+currmax);
+            currsum=max(currsum,currmax);
+            i++;
+        }
+        return currsum;
+        
+    }
+};
+
+// KADANS ALGO EFFICIENT APPROACH
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int sum=0;
+        int max1=INT_MIN;
+        for(auto x : nums)
+        {
+            sum+=x;
+        max1=max(max1,sum);
+            if(sum<0)
+            {
+                sum=0;
+            }
+          
+            
+        }
+        return max1;
+    }
+};
+

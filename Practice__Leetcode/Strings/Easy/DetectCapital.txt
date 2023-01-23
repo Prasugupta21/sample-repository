@@ -1,0 +1,60 @@
+class Solution {
+public:
+    bool detectCapitalUse(string w) {
+        int cnt1=0,cnt2=0,cnt3=0,i=1;
+        if((w[0]>=65) && (w[0]<=90)){
+       while(i<w.size()){
+          if((w[i]>=65) && (w[i]<=90)){
+              cnt1++;
+          } 
+          else{
+              cnt2++;
+          }
+          i++;
+          
+       }
+ if(((cnt1==w.size()-1 )||(cnt2==w.size()-1))){
+            return true;
+        }
+
+        }
+        else{
+            i=1;
+            while(i<w.size()){
+                if((w[i]>=97) && (w[i]<=122)){
+                    cnt3++;
+            }
+            i++;
+        }
+          if((cnt3==w.size()-1)){
+           return true;
+       }
+        }
+       
+      
+       return false;
+    }
+};
+
+
+2nd Approach
+
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        int count=0;
+        if(word.size()==1)
+            return true;
+        
+        for(int i=0; i<word.size(); i++)
+            if(isupper(word[i]))
+                count++;
+        
+        if(count==1 && isupper(word[0]))
+            return true;
+        if(count==0 || count==word.size())
+            return true;
+        else
+            return false;
+    }
+};

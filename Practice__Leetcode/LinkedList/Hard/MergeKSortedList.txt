@@ -63,9 +63,41 @@ public
         }
         ListNodehead=lists[0];
         int i=1;
-        while(ilists.size()){
+        while(i<lists.size()){
             head=merge(head,lists[i++]);
         }
         return head;
     }
+};
+
+
+2
+class Solution {
+public:
+ListNode mergeKLists(vector<ListNode*>& lists) {
+vectorv;
+
+ for(int i=0;i<lists.size();i++)
+ {
+    
+     while(lists[i]!=NULL)
+     {
+         v.push_back(lists[i]->val);
+         lists[i]=lists[i]->next;
+     }
+     
+ }
+ sort(v.begin(),v.end());
+
+ ListNode* res=new ListNode(0);
+ ListNode* t=res;
+ int i=0;
+ while(i<v.size())
+ {
+     t->next=new ListNode(v[i]);
+     t=t->next;
+     i++;
+ }
+ return res->next;
+}
 };

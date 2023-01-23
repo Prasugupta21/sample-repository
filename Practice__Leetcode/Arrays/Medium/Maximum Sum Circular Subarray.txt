@@ -1,0 +1,72 @@
+int MaxSum(vector<int>& nums){
+    int maxSum=INT_MIN;
+     int currsum=0;
+     for(int i=0;i<nums.size();i++){
+           currsum+=nums[i];
+           maxSum=max(maxSum,currsum);
+           if(currsum<0){
+               currsum=0;
+           }
+        
+
+        }
+        return maxSum;
+}
+int MinSum(vector<int>& nums){
+int minSum=INT_MAX;
+int currsum=0;
+ for(int i=0;i<nums.size();i++){
+           currsum+=nums[i];
+           minSum=min(minSum,currsum);
+           if(currsum>0){
+               currsum=0;
+           }
+        
+
+        }
+        return minSum;
+}
+class Solution {
+public:
+
+    int maxSubarraySumCircular(vector<int>& nums) {
+        int ans=INT_MIN,sum=0;
+       
+        int x=1;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>0){
+                x=0;
+                break;
+            }
+            ans=max(ans,nums[i]);
+        }
+        if(x){
+            return ans;
+
+        }
+        int ans1=MaxSum(nums);
+        for(int i=0;i<nums.size();i++){
+            sum+=nums[i];
+        }
+       int ans2=sum-MinSum(nums);
+       return max(ans1,ans2);
+        
+    }
+};
+
+2nd implementation
+
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        int totalSum = 0, maxSum = INT_MIN, curMax = 0, minSum = INT_MAX, curMin = 0;
+    for (int x : nums) {
+        curMax = max(x, curMax + x);  //update the current max subarray sum
+        maxSum = max(maxSum, curMax); //update the overall max subarray sum
+        curMin = min(x, curMin + x);  //update the current min subarray sum
+        minSum = min(minSum, curMin); //update the overall min subarray sum
+        totalSum += x;
+    }
+    return maxSum > 0 ? max(maxSum, totalSum - minSum) : maxSum;
+    }
+};

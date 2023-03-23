@@ -1,0 +1,56 @@
+class Solution {
+public:
+void solve(TreeNode * root , int& MaxLevel,int Level,vector<int>&v){
+    if(!root){
+        return;
+    }
+    if(Level>MaxLevel){
+        v.push_back(root->val);
+        MaxLevel=Level;
+    }
+    solve(root->right,MaxLevel,Level+1,v);
+    solve(root->left,MaxLevel,Level+1,v);
+
+
+}
+    vector<int> rightSideView(TreeNode* root) {
+        int MaxLevel=-1;
+        vector<int>v;
+        if(!root){
+            return v;
+        }
+        solve(root,MaxLevel,0,v);
+        return v;
+        
+    }
+};
+
+
+class Solution {
+public:
+    void solve(TreeNode* root, vector<int> &ans, int level)
+    {
+        // base case
+        if (root == NULL)
+        {
+            return ; 
+        }
+
+        // we entered a new level 
+        if (level == ans.size())
+        {
+            ans.push_back(root -> val) ; 
+        }
+
+        solve(root -> right, ans, level + 1) ; 
+        solve(root -> left, ans, level + 1 ) ; 
+    }
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans ; 
+        int level = 0 ; 
+
+        solve(root, ans, level) ;
+        
+        return ans ; 
+    }
+};

@@ -1,0 +1,13 @@
+class Solution {
+public:
+    vector<int> shuffle(vector<int>& nums, int n) {
+        vector<int>ans;
+        int i=0,j=n;
+// also dont need to declare j instead, you can write nums[i+n] instead of nums[j]
+        while((i<n)&&(j<2*n)){
+            ans.push_back(nums[i++]);
+            ans.push_back(nums[j++]);
+        }
+        return ans;
+    }
+};

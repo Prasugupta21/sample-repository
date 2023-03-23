@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int calculate(string s) {
+        int res=0,val=0,sign=1;
+        stack<int>st,signS;
+        for(auto x:s){
+            if(isdigit(x)){
+                val=(val*10)+(x-'0');
+
+            }
+            else if(x=='+'){
+                res+=sign*val;
+                val=0;
+                sign=1;
+            }
+             else if(x=='-'){
+                res+=sign*val;
+                val=0;
+                sign=-1;
+            }
+            else if(x=='('){
+                st.push(res);
+                signS.push(sign);
+                res=0;
+                sign=1;
+            }
+            else if(x==')'){
+                res+=val*sign;
+                res*=signS.top();
+                signS.pop();
+                res+=st.top();
+                st.pop();
+                val=0;
+            }
+        }
+        return res+val*sign;
+    }
+};

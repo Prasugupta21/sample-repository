@@ -1,0 +1,77 @@
+class Solution {
+public:
+
+    int calculate(string s) {
+        string a="";
+        int currNum=0,ans=0;
+        char operation='+';
+        for(int i=0;i<s.size();i++){
+            char currChar=s[i];
+            if(isdigit(currChar)){
+                currNum=(currNum*10)+(currChar-'0');
+            }
+           if((!isdigit(currChar) && !isspace(currChar))||(i==s.size()-1)){
+                 if(operation=='-'){
+         s1.push(-currNum);
+     }
+     else if(operation=='+'){
+           s1.push((currNum));
+     }
+     else if(operation=='*'){
+         int x=s1.top();
+         s1.pop();
+         s1.push(x*currNum);
+     }
+     else if(operation == '/'){
+         int x=s1.top();
+         s1.pop();
+         s1.push(x/currNum);
+     }
+     operation=currChar;
+     currNum=0;
+          }
+        }
+       
+    while(!(s1.empty())){
+        ans+=s1.top();
+        s1.pop();
+    }
+    return ans;
+
+      
+
+    }
+};
+
+
+//optimised
+
+class Solution {
+public:
+    int calculate(string s) {
+        int length = s.length();
+        if (length == 0) return 0;
+        int currentNumber = 0, lastNumber = 0, result = 0;
+        char sign = '+';
+        for (int i = 0; i < length; i++) {
+            char currentChar = s[i];
+            if (isdigit(currentChar)) {
+                currentNumber = (currentNumber * 10) + (currentChar - '0');
+            }
+            if (!isdigit(currentChar) && !iswspace(currentChar) || i == length - 1) {
+                if (sign == '+' || sign == '-') {
+                    result += lastNumber;
+                    lastNumber = (sign == '+') ? currentNumber : -currentNumber;
+                } else if (sign == '*') {
+                    lastNumber = lastNumber * currentNumber;
+                } else if (sign == '/') {
+                    lastNumber = lastNumber / currentNumber;
+                }
+                sign = currentChar;
+                currentNumber = 0;
+            }
+        }
+        result += lastNumber;
+        return result;  
+    }
+};

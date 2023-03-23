@@ -1,0 +1,67 @@
+class Solution {
+public:
+string decodeString( string s,int &i){
+ 
+    string res;
+    while((i<s.length())&&(s[i]!=']')){
+        if(!isdigit(s[i])){
+            res+=s[i++];
+        }
+        else{
+            int n=0;
+            while((i<s.size())&&(isdigit(s[i]))){
+                n=(n*10)+(s[i++]-'0');
+            }
+            i++;
+            string smallAns=decodeString(s,i);
+            i++;
+            while(n--){
+                res+=smallAns;
+            }
+        }
+    }
+    return res;
+}
+    string decodeString(string s) {
+        int i=0;
+     return   decodeString(s,i);
+    }
+};
+
+//approach 2
+class Solution {
+public:
+
+    string decodeString(string s) {
+        stack<string>s1;
+        stack<int>cnt;
+        string t="";
+        int n=0;
+        for(int i=0;i<s.size();i++){
+            if(isalpha(s[i])){
+                t+=s[i];
+            }
+            if(isdigit(s[i])){
+                n=(n*10)+(s[i]-'0');
+            }
+            if(s[i]=='['){
+                s1.push(t);
+                cnt.push(n);
+                n=0;
+                t="";
+            }
+            if(s[i]==']'){
+                string top=s1.top();
+                int cntTop=cnt.top();
+                s1.pop();
+                cnt.pop();
+                for(int i=0;i<cntTop;i++){
+                    top+=t;
+                }
+                t=top;
+            }
+        }
+        return t;
+
+    }
+};

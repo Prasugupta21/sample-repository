@@ -1,0 +1,107 @@
+
+// Recursion 
+
+
+class Solution {
+public:
+
+
+int solve(int n,int k){
+    if(n==1){
+        return 0;
+    }
+    return (solve(n-1,k)+k)%n;
+}
+    int findTheWinner(int n, int k) {
+       return solve(n,k)+1;
+
+
+    }
+};
+
+
+// using LLclass Node{
+public:
+int data;
+Node *next,*prev;
+Node(int data){
+    this->data=data;
+    next=NULL;
+   
+
+}
+};
+
+class Solution {
+public:
+
+int helper(Node*head,int k){
+    Node*prev=NULL;
+    Node*temp=head;
+    while(head->next!=head){
+
+  
+    for(int i=1;i<k;i++){
+        prev=temp;
+        temp=temp->next;
+    }
+    if(temp==head){
+        head=head->next;
+    }
+    prev->next=temp->next;
+    Node *todel=temp;
+    temp=prev->next;
+    delete todel;
+    
+
+      }
+      return head->data;
+}
+Node*head=NULL;
+Node*tail=NULL;
+
+    int findTheWinner(int n, int k) {
+        if(k==1){
+            return n;
+        }
+      head=new Node(1);
+      tail=head;
+      for(int i=2;i<=n;i++){
+          Node*newNode=new Node(i);
+          tail->next=newNode;
+          tail=newNode;
+      }
+      tail->next=head;
+      return helper(head,k);
+
+
+    }
+};
+
+// using queue
+
+
+
+class Solution {
+public:
+
+  queue<int>q;
+
+    int findTheWinner(int n, int k) {
+     for(int i=1;i<=n;i++){
+         q.push(i);
+     }
+     while(q.size()!=1){
+         int x=k;
+         while(x>=2){
+             int data=q.front();
+             q.pop();
+             q.push(data);
+             x--;
+         }
+         q.pop();
+     }
+
+return q.front();
+    }
+};

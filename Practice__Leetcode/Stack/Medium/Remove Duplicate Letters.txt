@@ -1,0 +1,68 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        unordered_map<char,bool>visited;
+        unordered_map<char,int>cnt;
+        stack<char>s1;
+        string ans="";
+        for(auto x:s){
+            cnt[x]++;
+        }
+        for(int i=0;i<s.size();i++){
+             char idx=s[i];
+             cnt[idx]--;
+            if(!(visited[idx])){
+                visited[idx]=true;
+                while((!s1.empty())&&(s1.top()>idx)&&(cnt[s1.top()])){
+                    visited[s1.top()]=false;
+                    s1.pop();
+                }
+                s1.push(idx);
+            }
+             
+        }
+        while(!(s1.empty())){
+            char c=s1.top();
+            ans=c+ans;
+            s1.pop();
+        }
+        return ans;
+    }
+};
+
+//another implementation
+
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        unordered_map<char, bool> isTaken;
+        unordered_map<char, int> lastIndx;
+
+        for(int i=0; i<s.length(); i++){
+            isTaken[s[i]]=false;
+            lastIndx[s[i]]=i;
+        }
+
+        stack<char> st;
+        for(int i=0; i<s.length(); i++){
+            if(!isTaken[s[i]]){
+                while(!st.empty() && s[i]<st.top() && lastIndx[st.top()]>i){
+                    isTaken[st.top()] = false;
+                    st.pop();
+                }
+                st.push(s[i]);
+                isTaken[s[i]] = true;
+            }
+        }
+
+        string ans="";
+        while(!st.empty()){
+            ans+=st.top();
+            st.pop();
+        }
+
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
+

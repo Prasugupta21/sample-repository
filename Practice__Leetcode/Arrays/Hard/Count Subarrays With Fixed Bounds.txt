@@ -1,0 +1,22 @@
+class Solution {
+public:
+    long long countSubarrays(vector<int>& nums, int minK, int maxK) {
+      int lastMaxIdx=-1,lastMinIdx=-1,lastInvalidIdx=-1;
+      long long cnt=0;
+     for(int i=0;i<nums.size();++i){
+         if(nums[i]>=minK &&  nums[i]<=maxK){
+             lastMaxIdx=(nums[i]==maxK)?i:lastMaxIdx;
+             lastMinIdx=(nums[i]==minK)?i:lastMinIdx;
+             cnt+=max(0,min(lastMaxIdx,lastMinIdx)-lastInvalidIdx);
+
+
+         }
+         else{
+             lastInvalidIdx=i;
+                lastMinIdx=-1;
+                lastMaxIdx=-1;
+         }
+     }
+     return cnt;
+    }
+};

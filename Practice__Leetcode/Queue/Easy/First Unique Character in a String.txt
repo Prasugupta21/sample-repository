@@ -1,0 +1,43 @@
+
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char,int>m;
+        queue<int>q;
+        for(auto x :s){
+            m[x]++;
+        }
+        for(int i=0;i<s.size();i++){
+          if(m[s[i]]==1){
+             q.push(i);
+          }
+        }
+        if(!(q.empty())){
+            return q.front();
+        }
+        return -1;
+    }
+};
+
+// in above code only map can be used not need to use queue;
+
+
+// constant space
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+       vector<int>v(26,0);
+        for(auto x :s){
+            v[x-'a']++;
+        }
+        for(int i=0;i<s.size();i++){
+          if(v[s[i]-'a']==1){
+            return i;
+          }
+        }
+       
+        return -1;
+    }
+};

@@ -1,0 +1,66 @@
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+  stack<TreeNode*>st;
+  st.push(root);
+  
+  unordered_map<TreeNode*,TreeNode*>parent;
+  parent[root]=NULL;
+  set<TreeNode*>s;
+  while(parent.find(p)==parent.end() || parent.find(q)==parent.end()){
+      TreeNode*f=st.top();
+      st.pop();
+      if(f->left){
+          parent[f->left]=f;
+          st.push(f->left);
+      }
+        if(f->right){
+          parent[f->right]=f;
+          st.push(f->right);
+      }
+  }
+  while(p){
+      s.insert(p);
+      p=parent[p];
+  }
+  while(s.find(q)==s.end()){
+      q=parent[q];
+  }
+  return q;
+    }
+};
+Console
+
+
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+  stack<TreeNode*>st;
+  st.push(root);
+  
+  unordered_map<TreeNode*,TreeNode*>parent;
+  parent[root]=NULL;
+  set<TreeNode*>s;
+  while(parent.find(p)==parent.end() || parent.find(q)==parent.end()){
+      TreeNode*f=st.top();
+      st.pop();
+      if(f->left){
+          parent[f->left]=f;
+          st.push(f->left);
+      }
+        if(f->right){
+          parent[f->right]=f;
+          st.push(f->right);
+      }
+  }
+  while(p){
+      s.insert(p);
+      p=parent[p];
+  }
+  while(s.find(q)==s.end()){
+      q=parent[q];
+  }
+  return q;
+    }
+};

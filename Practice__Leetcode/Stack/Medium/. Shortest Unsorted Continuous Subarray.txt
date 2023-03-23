@@ -1,0 +1,61 @@
+//brute Force
+
+
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        vector<int>v,v1;
+       int cnt=0;
+        for(int i=0;i<nums.size();i++){
+            v1.push_back(nums[i]);
+        }
+         sort(v1.begin(),v1.end());
+            for(int j=0;j<nums.size();j++){
+                if(nums[j]!=v1[j]){
+                    v.push_back(j);
+                    cnt++;
+                   
+                }
+       
+        }
+        if(!v.size()){
+            return 0;
+        }
+   for(int i=v[0];i<=v[v.size()-1];i++){
+       if(nums[i]==v1[i]){
+           cnt++;
+       }
+  
+   }
+        
+     return cnt;
+    }
+};
+
+//using stack
+
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+       stack<int>s1,s2;
+       int l=INT_MAX,r=INT_MIN;
+       for(int i=0;i<nums.size();i++){
+               while((!s1.empty())&&(nums[s1.top()]>nums[i])){
+                   l=min(l,s1.top());
+                   s1.pop();
+               }
+               s1.push(i);
+       }
+    
+       for(int i=nums.size()-1;i>=0;i--){
+               while((!s2.empty())&&(nums[s2.top()]<nums[i])){
+                   r=max(r,s2.top());
+                   s2.pop();
+               }
+               s2.push(i);
+       }
+     return ((l==INT_MAX)?0:(r-l+1));
+    } 
+};
+
+// also  can use only one stack s1 and dont need to write anything in code  except not  taking s2;

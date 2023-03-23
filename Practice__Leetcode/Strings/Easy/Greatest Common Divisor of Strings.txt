@@ -1,0 +1,14 @@
+class Solution {
+    int Gcd(int n,int m){
+        for(int i=min(m,n);i>=1;i--){
+            if((!(m%i)) && (!(n%i))){
+                return i;
+            }
+        }
+        return INT_MAX;
+    }
+public:
+    string gcdOfStrings(string str1, string str2) {
+        return ((str1+str2==str2+str1)? str1.substr(0,Gcd(str1.size(),str2.size())):"");
+    }
+};

@@ -1,0 +1,129 @@
+class Node{
+public:
+Node  *prev,*next;
+int val,key,cnt;
+Node(int key,int val){
+this->key=key;
+this->val=val;
+cnt=1;
+}
+};
+class List{
+public:
+int size;
+Node *head,*tail;
+List(){
+   
+    head=new Node(0,0);
+    tail=new Node(0,0);
+    head->next=tail;
+    tail->prev=head;
+    size=0;
+}
+void addfront(Node *node){
+    Node*temp=head->next;
+ node->next=temp;
+ node->prev=head;
+ head->next=node;
+ temp->prev=node;
+ size++;
+ return;
+}
+void removeNode(Node *node){
+    Node *delNodeprev=node->prev;
+    Node*delNodenext=node->next;
+  
+    delNodeprev->next=delNodenext;
+    delNodenext->prev=delNodeprev;
+    size--;
+    return;
+
+}
+};
+
+
+
+
+
+class LFUCache {
+public:
+unordered_map<int,List*>freq;
+unordered_map<int,Node*>keyNode;
+
+
+int capacity;
+int minFreq,currSize;
+
+
+    LFUCache(int capacity) {
+        this->capacity=capacity;
+        minFreq=0;
+        currSize=0;
+
+    }
+void updateFreq(Node *node){
+    freq[node->cnt]->removeNode(node);
+    if((minFreq==node->cnt)&&(!(freq[node->cnt]->size))){
+        minFreq++;
+    }
+    List*higherFreq=new List();
+    if(freq.find(node->cnt+1)!=freq.end()){
+        higherFreq=freq[node->cnt+1];
+    }
+    node->cnt+=1;
+    higherFreq->addfront(node);
+    freq[node->cnt]=higherFreq;
+
+}
+    
+    
+    int get(int key) {
+               if(keyNode.find(key)==keyNode.end()){
+                   return -1;
+               }
+               Node*node=keyNode[key];
+               int val=node->val;
+               updateFreq(node);
+               return val;
+        
+        
+            }
+    
+    void put(int key, int value) {
+        if(!capacity){
+            return;
+        }
+        if(keyNode.find(key)!=keyNode.end()){
+            Node*node=keyNode[key];
+            node->val=value;
+            updateFreq(node);
+        }
+        else{
+
+            if(currSize==capacity){
+                List*l=freq[minFreq];
+                keyNode.erase(l->tail->prev->key);
+                freq[minFreq]->removeNode(l->tail->prev);
+                currSize--;
+                
+            }
+            currSize++;
+            List * list=new List();
+            minFreq=1;
+            if(freq.find(minFreq)!=freq.end()){
+                list=freq[minFreq];
+            }
+            Node*node=new Node(key,value);
+            list->addfront(node);
+            freq[minFreq]=list;
+            keyNode[key]=node;
+        }
+    }
+};
+
+/**
+ * Your LFUCache object will be instantiated and called as such:
+ * LFUCache* obj = new LFUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */

@@ -1,0 +1,93 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+
+// Recursive
+
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(!root){
+            return 0;
+        }
+        return 1+max(maxDepth(root->left),maxDepth(root->right));
+    }
+};
+
+
+
+// approach 2
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        int currDepth=0,maxDepth=0;
+
+        if(!root){
+            return 0;
+        }
+        stack<pair<TreeNode*,int>>s;
+        s.push({root,1});
+        while(!s.empty()){
+            TreeNode*curr=s.top().first;
+           
+        currDepth=s.top().second;
+         s.pop();
+        maxDepth=max(maxDepth,currDepth);
+        if(curr->left){
+   s.push({curr->left,currDepth+1});
+        }
+        if(curr->right){
+   s.push({curr->right,currDepth+1});
+
+        }
+         
+     
+        }
+        return maxDepth;
+    }
+};
+
+// approacb 3''
+
+
+
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+     
+int maxDepth=0;
+        if(!root){
+            return 0;
+        }
+        queue<TreeNode*>q;
+      q.push(root);
+      while(!q.empty()){
+          int n=q.size();
+          maxDepth++;
+        
+          while(n--){
+             TreeNode*f=q.front();
+             q.pop(); 
+             if(f->left){
+                 q.push(f->left);
+
+             }
+             if(f->right){
+                 q.push(f->right);
+             }
+          }
+      }
+     
+        return maxDepth;
+    }
+};

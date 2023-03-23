@@ -1,0 +1,87 @@
+class Solution {
+public:
+    string convert(string s, int r) {
+
+      string ans;
+      int n=s.size();
+      if(r==1){
+          return s;
+      }
+      
+      int section=ceil(n/(2.0*r-2));
+      
+      int col=section* (r-1),currRow=0,currCol=0;
+    
+      vector<vector<char>>v(n,vector<char>(col,' '));
+
+        int i=0;
+        while(i<s.size()){
+                 while((currRow<r)&&(i<s.size())){
+                     v[currRow++][currCol]=s[i++];
+                 }
+                 currRow-=2;
+                 currCol+=1;
+                 while((currRow>0) && (currCol<col) && (i<n) ){
+                     v[currRow--][currCol++]=s[i++];
+
+                 }
+
+        }
+        for(auto x : v){
+            for(auto t: x){
+                if(t!=' '){
+                    ans+=t;
+                }
+            }
+        }
+        
+        return ans;
+        
+    }
+};
+
+
+
+
+//optimal approach
+
+
+class Solution {
+public:
+    string convert(string s, int r) {
+
+      string ans;
+      int n=s.size();
+      if(r==1){
+          return s;
+      }
+      
+     
+      int CharinSection=(2*r)-2;
+     
+    
+    
+
+        int currRow=0;
+        for(;currRow<r;currRow++){
+            int i=currRow;
+            while(i<n){
+                ans+=s[i];
+                if((currRow!=0) && (currRow!=r-1)){
+                    int charInBw=CharinSection - 2 * currRow;
+                    int SecondIndex=i+charInBw;
+                    if(SecondIndex<n){
+                        ans+=s[SecondIndex];
+                    }
+                }
+                i+=CharinSection;
+
+            }
+
+        }
+       return ans;
+    }
+};
+
+
+

@@ -1,0 +1,96 @@
+class Solution {
+public:
+class Pair{
+    public:
+    int id;
+    int st;
+    int ct;
+};
+    vector<int> exclusiveTime(int n, vector<string>& logs) {
+        stack<Pair>s;
+
+        vector<int>v(n);
+        for(auto x:logs){
+               stringstream ss(x);
+               string a,b,c;
+               getline(ss,a,':');
+               getline(ss,b,':');
+               getline(ss,c,':');
+               int z=stoi(a),y=stoi(c);
+               if(b=="start"){
+
+              Pair p;
+               p.id=stoi(a);
+               p.st=stoi(c);
+               p.ct=0;
+                 s.push(p);
+               }
+               else{
+                 Pair p=  s.top();
+                 s.pop();
+                   int interval=y-p.st+1;
+                 int time=interval-p.ct;
+                 v[p.id]+=time;
+                  if(!s.empty()){
+                s.top().ct+=interval;
+
+               }
+               }
+              
+              
+        }
+        return v;
+    }
+};
+
+//approach same in other implementation and so class Pair{
+    public:
+    int id;
+bool isStart;
+int time;
+    
+    
+};
+ Pair getPair(string  x){
+              stringstream ss(x);
+               string a,b,c;
+               getline(ss,a,':');
+               getline(ss,b,':');
+               getline(ss,c,':');
+               return {stoi(a),b=="start",stoi(c)};
+ }
+
+class Solution {
+public:
+
+
+    vector<int> exclusiveTime(int n, vector<string>& logs) {
+        stack<Pair>s;
+
+        vector<int>v(n,0);
+        for(auto x:logs){
+            
+            
+            
+      Pair p=getPair(x);
+    if(p.isStart){
+               
+                 s.push(p);
+               }
+               else{
+                  
+
+                   int t=p.time-s.top().time+1;
+                   v[p.id]+=t;
+                   s.pop();
+                   if(!s.empty()){
+                       v[s.top().id]-=t;
+                   }
+               }
+               }
+              
+              
+        
+        return v;
+    }
+};

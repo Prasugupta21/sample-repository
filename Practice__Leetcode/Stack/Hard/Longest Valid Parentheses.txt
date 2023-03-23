@@ -1,0 +1,76 @@
+class Solution {
+public:
+ 
+
+    int longestValidParentheses(string s) {
+    
+     int Max=0,left=0,right=0;
+     
+    for(int i=0;i<s.size();i++){
+       if(s[i]=='('){
+           ++left;
+       }
+       else{
+           ++right;
+       }
+       if(left==right){
+           Max=max(Max,right);
+
+       }
+       else if(left<right){
+           left=0;
+           right=0;
+       }
+    }
+    left=0;
+    right=0;
+    for(int i=s.size()-1;i>=0;i--){
+        if(s[i]==')'){
+            ++right;
+        }
+        else{
+            ++left;
+        }
+        if(left==right){
+            Max=max(Max,right);
+        }
+        if(left>right){
+            left=0;
+            right=0;
+        }
+    }
+    return Max*2;
+    }
+};
+
+//Stack 
+
+class Solution {
+public:
+ 
+
+    int longestValidParentheses(string s) {
+    
+     int Max=0,len=s.size(),ans=0;
+     stack<int>s1;
+    for(int i=0;i<s.size();i++){
+       if(s[i]=='('){
+           s1.push(i);
+       }
+       else if((s1.empty())||(s[s1.top()]!='(' && s[i]==')')){
+           s1.push(i);
+       }
+      else if((s[i]==')')&&(s[s1.top()]=='(')){
+      s1.pop();
+    }
+}
+while(!s1.empty()){
+    int t=s1.top();
+    ans=max(len-t-1,ans);
+    len=t;
+    s1.pop();
+}
+ans=max(ans,len);
+return ans;
+    }
+};

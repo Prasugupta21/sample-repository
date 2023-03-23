@@ -1,0 +1,166 @@
+// Recursive
+
+class Solution {
+public:
+void solve (TreeNode* root,vector<vector<int>>&v,int level){
+    if(v.size()==level){
+        v.push_back({});
+        
+    }
+    if(level%2){
+        reverse(v[level].begin(),v[level].end());
+          v[level].push_back(root->val);
+           reverse(v[level].begin(),v[level].end());
+    }
+    else{
+    v[level].push_back(root->val);
+    }
+ 
+   
+     
+     if(root->left){
+         solve(root->left,v,level+1);
+     }
+     if(root->right){
+         solve(root->right,v,level+1);
+     }
+     
+  
+    
+     
+     return;
+}
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>>v;
+        if(!root){
+            return v;
+        }
+        solve(root,v,0);
+        return v;
+    }
+};
+
+
+class Solution {
+public:
+
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>>v;
+       
+
+       queue<pair<TreeNode*,int>>q;
+         if(!root){
+             return v;
+         }
+        q.push({root,0});
+        q.push({NULL,0});
+        
+        
+        vector<int>temp;
+        while(!(q.empty())){
+           
+        pair p=q.front();
+TreeNode*f=p.first;
+int level=p.second;
+            q.pop();
+            if(!f){
+                v.push_back(temp);
+                temp.clear();
+                if(!(q.empty())){
+                    q.push({NULL,0});
+                    
+                }
+
+            }
+            else{
+                if(level%2){
+                    reverse(temp.begin(),temp.end());
+                     temp.push_back(f->val);
+                      reverse(temp.begin(),temp.end());
+
+                }
+                else{
+                        temp.push_back(f->val); 
+                }
+               
+                  if(f->left){
+                q.push({f->left,level+1});
+            }
+            if(f->right){
+                q.push({f->right,level+1});
+            }
+            }
+            }
+            
+          
+        
+        return v;
+    }
+};
+
+// iterative approach 2 
+
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> resultVec;
+        
+        if (root == NULL)
+            return resultVec;
+        
+		// Two stacks, one for L->R and other for R-L
+        stack<TreeNode*> lrstack;
+        stack<TreeNode*> rlstack;
+        
+		// Start with root. Its L->R
+        lrstack.push(root);
+        
+		// Pop  L->R stack, push left and right children into R->L stack 
+		// Next pop R->L stack, push right and left children into L->R stack 
+        while (!lrstack.empty() || !rlstack.empty())
+        {
+            vector<int> vec1;
+            
+            while (!lrstack.empty()) 
+            {
+                TreeNode* lrtop = lrstack.top();
+                
+                vec1.push_back(lrtop->val);
+                
+                if (lrtop->left != NULL)
+                    rlstack.push(lrtop->left);
+                
+                if (lrtop->right != NULL)
+                    rlstack.push(lrtop->right);
+                
+                lrstack.pop();
+            }
+            
+            if (vec1.size() > 0)
+                resultVec.push_back(vec1);
+            
+            vector<int> vec2;
+            
+            while (!rlstack.empty())
+            {
+                TreeNode* rltop = rlstack.top();
+                
+                vec2.push_back(rltop->val);
+                
+                if (rltop->right != NULL)
+                    lrstack.push(rltop->right);
+                
+                if (rltop->left != NULL)
+                    lrstack.push(rltop->left);
+                
+                rlstack.pop();
+            }
+            
+            if (vec2.size() > 0)
+                resultVec.push_back(vec2);
+        }
+        
+        return resultVec;
+        
+    }
+};

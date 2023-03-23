@@ -1,0 +1,34 @@
+// Solution By Array 
+
+class Skiplist {
+public:
+int v[100000];
+
+    Skiplist() {
+        memset(v,0,sizeof(v));
+    }
+    
+    bool search(int target) {
+        return v[target];
+    }
+    
+    void add(int num) {
+        v[num]++;
+    }
+    
+    bool erase(int num) {
+        if(v[num]){
+            v[num]--;
+            return true;
+        }
+        return false;
+    }
+};
+
+/**
+ * Your Skiplist object will be instantiated and called as such:
+ * Skiplist* obj = new Skiplist();
+ * bool param_1 = obj->search(target);
+ * obj->add(num);
+ * bool param_3 = obj->erase(num);
+ *///

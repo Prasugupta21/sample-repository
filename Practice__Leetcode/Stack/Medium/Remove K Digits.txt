@@ -1,0 +1,51 @@
+
+#include<iostream>
+#include<stack>
+#include<string>
+
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        string ans;
+        
+        stack<char>s;
+      
+        for(auto x:num){
+            while((k)&&(!s.empty())&&(s.top()>x)){
+                
+                s.pop();
+                k--;
+            }
+            s.push(x);
+// if i dont write this below condition then i have to write last commented while function 
+           if(s.size()==1 && x=='0'){
+               s.pop();
+           }
+
+        }
+        while((k)&&(!s.empty())){
+            
+            s.pop();
+            k--;
+        }
+        
+        while(!s.empty()){
+            // here if i do ans=s.top()+ans and do write reverse function then memery limit exceeded;
+            ans+=s.top();
+            s.pop();
+
+        }
+        reverse(ans.begin(),ans.end());
+      / * while((ans.size()>1)&&(ans[0]=='0')){
+                ans.erase(ans.begin());
+
+            }
+*/
+        
+        if(!ans.size()){
+            return "0";
+        }
+        return ans;
+    }
+};
+

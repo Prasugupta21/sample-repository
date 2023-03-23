@@ -1,0 +1,109 @@
+class Solution {
+public:
+    int maxIceCream(vector<int>& c, int coins) {
+sort(c.begin(),c.end());
+int sum=0,cnt=0;
+if(c[0]>coins){
+    return 0;
+}
+for(int i=0;i<c.size();i++){
+    if(sum<coins){
+        sum+=c[i];
+        
+       
+        if(sum==coins){
+            cnt++;
+            break;
+        }
+        else if(sum>coins){
+            break;
+        }
+        cnt++;
+         
+
+    }
+}
+return cnt;
+    }
+};
+
+//using countsort (optimised) approach 1
+
+#include<cstring>
+class Solution {
+    vector<int> countSort(vector<int>&c,int cnt[],int maxPrice){
+     
+      for(int i=0;i<c.size();i++ ){
+          cnt[c[i]]++;
+      }
+      for(int i=1;i<=maxPrice;i++){
+          cnt[i]+=cnt[i-1];
+      }
+vector<int>sortV(c.size());
+for(int i=c.size()-1;i>=0;i--){
+    sortV[--cnt[c[i]]]=c[i];
+}
+return sortV;
+       
+    }
+public:
+    int maxIceCream(vector<int>& c, int coins) {
+         int maxPrice=c[0];
+      for(int i=1;i<c.size();i++){
+          maxPrice=max(maxPrice,c[i]);
+      }
+      int cnt[maxPrice+1];
+      memset(cnt,0,sizeof(cnt));
+vector<int>v=countSort(c,cnt,maxPrice);
+for(int i=0;i<v.size();i++){
+    cout<<v[i]<<" ";
+}
+int sum=0,count=0;
+if(v[0]>coins){
+    return 0;
+}
+for(int i=0;i<v.size();i++){
+    if(sum<coins){
+        sum+=v[i];
+        
+       
+        if(sum==coins){
+            count++;
+            break;
+        }
+        else if(sum>coins){
+            break;
+        }
+        count++;
+         
+
+    }
+}
+return count;
+    }
+};
+
+// approch 2
+class Solution{
+public:
+    int maxIceCream(vector<int>& c, int coins) {
+       int max=*max_element(c.begin(),c.end());
+       vector<int>cnt(max+1);
+       int ans=0;
+       for(auto x:c){
+           cnt[x]++;
+       }
+       for(int i=1;i<=max;i++){
+           if(!cnt[i]){
+               continue;
+           }
+           if(coins<i){
+               break;
+           }
+           int count=min(cnt[i],coins/i);
+           coins-=count*i;
+           ans+=count;
+       }
+    return  ans;
+    }
+};

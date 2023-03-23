@@ -1,0 +1,131 @@
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& t, int k) {
+        int cnt=0;
+    while(t[k]){
+        for(int i=0;i<t.size();i++){
+             if(t[i]){
+                 t[i]-=1;
+
+                 cnt++;
+                 if(!t[k]){
+                     break;
+                 }
+             }
+        }
+    }
+    return cnt;
+
+    }
+};
+
+//optimal 
+
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& t, int k) {
+        int cnt=0;
+    for(int i=0;i<t.size();i++){
+       if(t[i]<=t[k]){
+           cnt+=t[i];
+         
+       }
+       else{
+           cnt+=t[k];
+       }
+        }
+        for(int i=k+1;i<t.size();i++){
+            if(t[i]>=t[k]){
+                cnt--;
+            }
+        }
+    
+    return cnt;
+
+    }
+};
+
+//same approach but some modification 
+
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& t, int k) {
+        int cnt=0;
+    for(int i=0;i<t.size();i++){
+       if(t[i]<t[k]){
+           cnt+=t[i];
+         
+       }
+       else{
+           if(i<=k){
+           cnt+=t[k];
+       }
+       else{
+           cnt+=t[k]-1;
+       }
+        }
+    }
+      
+    
+    return cnt;
+
+    }
+};
+
+
+//using queue 
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& t, int k) {
+        int cnt=0;
+        queue<int>q;
+    for(int i=0;i<t.size();i++){
+       if(t[i]<t[k]){
+         q.push(t[i]);
+         
+       }
+       else{
+           if(i<=k){
+           q.push(t[k]);
+       }
+       else{
+         
+           q.push(t[k]-1);
+       }
+        }
+    }
+      
+    while(!(q.empty())){
+        cnt+=q.front();
+        q.pop();
+    }
+    return cnt;
+
+    }
+};
+
+//using queue
+
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& tickets, int k) {
+        queue<pair<int,int>>q;
+        int ans=0;
+        for(int i=0;i<tickets.size();i++){
+            q.push(make_pair(i,tickets[i]));
+        }
+        while(!q.empty()){
+            pair<int,int>p=q.front();
+            q.pop();
+            p.second=p.second-1;
+            ans++;
+            if(p.second==0 && p.first==k){
+                break;
+            }
+            if(p.second!=0){
+                q.push(p);
+            }
+        }
+        return ans;
+    }
+};

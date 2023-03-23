@@ -1,0 +1,119 @@
+//using LL
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+ inline  ListNode *reverse(ListNode*head){
+     if((!head)||(!(head->next))){
+         return head;
+     }
+     ListNode*curr=head,*prev=NULL,*nxt=NULL;
+     while(curr){
+         nxt=curr->next;
+         curr->next=prev;
+         prev=curr;
+         curr=nxt;
+     }
+     return prev;
+ }
+class Solution {
+public:
+   
+   
+    
+    
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+       ListNode*h1=reverse(l1);
+       ListNode*h2=reverse(l2);
+       ListNode*dummy=new ListNode(0);
+       ListNode*temp=dummy;
+       
+       int carry=0,sum=0;
+       while((h2)||(h1)||(carry)){
+           sum=((h1)?h1->val:0)+((h2)?h2->val:0)+carry;
+           carry=sum/10;
+           ListNode*newNode=new ListNode(sum%10);
+        temp->next=newNode;
+        temp=newNode;
+        h1=((h1)?h1->next:h1);
+        h2=((h2)?h2->next:h2);
+       }
+return reverse(dummy->next);
+    }
+
+
+    
+
+};
+//using Stack
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+class Solution {
+public:
+   
+   
+    
+    
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+       ListNode*h1=l1;
+       ListNode*h2=l2;
+       ListNode*dummy=new ListNode(0);
+    
+       stack<int>s1,s2,ans;
+       while(h1){
+           s1.push(h1->val);
+           h1=h1->next;
+       }
+        while(h2){
+           s2.push(h2->val);
+           h2=h2->next;
+       }
+
+       
+       int carry=0,sum=0;
+       while((!s1.empty())||(!s2.empty())||(carry)){
+           sum=((!s1.empty())?s1.top():0)+((!s2.empty())?s2.top():0)+carry;
+           carry=sum/10;
+          
+          
+        ans.push(sum%10);
+        if(!s1.empty()){
+       s1.pop();
+        }
+        if(!s2.empty()){
+       s2.pop();
+        }
+       }
+       
+       ListNode*curr=dummy;
+       while(!ans.empty()){
+         ListNode*newNode=new ListNode(ans.top());
+         curr->next=newNode;
+         curr=newNode;
+         ans.pop();
+       }
+       return dummy->next;
+
+
+    }
+
+    
+
+};

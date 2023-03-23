@@ -1,0 +1,52 @@
+// TLE o(n2)
+
+class Solution {
+public:
+    int totalFruit(vector<int>& f) {
+        int max2=INT_MIN,j;
+  for(int i=0;i<f.size();i++){
+  set<int>s;
+  j=i;
+  
+  
+      while(j<f.size()){
+          if((s.find(f[j])==s.end())  && s.size()==2){
+              break;
+          }
+          s.insert(f[j]);
+          j++;
+          
+      }
+      max2=max(max2,j-i);
+  }
+      return max2;
+    }
+};
+
+
+//SLiding Window
+
+
+class Solution {
+public:
+    int totalFruit(vector<int>& f) {
+        unordered_map<int,int>cnt;
+      int i=0,j=0,max2=INT_MIN;
+      while(j<f.size()){
+          cnt[f[j]]++;
+          j++;
+          while(cnt.size()>2){
+              cnt[f[i]]--;
+              if(!(cnt[f[i]])){
+                  cnt.erase(f[i]);
+                 
+              }
+               i++;
+          }
+          max2=max(max2,j-i);
+          
+      }
+      return max2;
+    }
+};
+

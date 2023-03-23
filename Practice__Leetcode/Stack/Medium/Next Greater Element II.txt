@@ -1,0 +1,75 @@
+// brute force 1
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n=nums.size();
+      vector<int>v(n,-1);
+      int flag=0;
+    
+
+      for(int i=0;i<nums.size();i++){
+          for(int j=1;j<nums.size();j++){
+              if(nums[(i+j)%n]>nums[i]){
+                  v[i]=nums[(i+j)%n];
+                  break;
+              }
+          }
+      }
+         return v;
+    }
+};
+
+//brute force 2 some optimised from above code
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n=nums.size();
+      vector<int>v(nums);
+      vector<int>v1(n,-1);
+      for(auto x :nums){
+          v.push_back(x);
+      }
+      
+    
+
+      for(int i=0;i<nums.size();i++){
+          for(int j=i+1;j<v.size();j++){
+              if(v[j]>nums[i]){
+                  v1[i]=v[j];
+                  break;
+              }
+          }
+      }
+         return v1;
+    }
+};
+
+
+//optimal approach
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n=nums.size();
+      
+      vector<int>v1(n);
+     stack<int>s;
+     for(int i=0;i<2*n;i++){
+         while((!s.empty())&&(nums[i%n]>nums[s.top()])){
+             v1[s.top()]=nums[i%n];
+             s.pop();
+         }
+         if(i<n){
+             s.push(i);
+         }
+     }
+     while(!s.empty()){
+         v1[s.top()]=-1;
+         s.pop();
+     }
+     return v1;
+    }
+};
+

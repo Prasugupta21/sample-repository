@@ -1,0 +1,369 @@
+class FrontMiddleBackQueue {
+public:
+    // here i will go with a vector
+    vector<int>v;
+    
+    FrontMiddleBackQueue() {
+         
+    }
+    
+    void pushFront(int val) {
+     v.insert(v.begin(),val);   
+    }
+    
+    void pushMiddle(int val) {
+        int mid=v.size()/2;
+        v.insert(v.begin()+mid,val);
+    }
+    
+    void pushBack(int val) {
+        v.push_back(val);
+    }
+    
+    int popFront() {
+        if(v.size()==0)
+            return -1;
+        int k= *v.begin();
+        v.erase(v.begin());
+        return k;
+        
+    }
+    
+    int popMiddle() {
+        if(v.size() == 0) return -1;
+
+        int mid = v.size() % 2 == 0 ? v.size()/2 - 1   : v.size()/2  ;
+        mid = max(mid,0);
+        int k =v[mid];
+        v.erase(v.begin() + mid );
+        return k;
+    }
+    
+    int popBack() {
+        if(v.size()==0)
+            return -1;
+        int k=v[v.size()-1];
+        v.pop_back();
+        return k;
+        
+    }
+};
+
+
+// using doubly LL
+
+class Node{
+public :
+int data;
+Node*next,*prev;
+Node(int data){
+    this->data=data;
+      next=NULL;
+      prev=NULL;
+}
+};
+
+
+
+class FrontMiddleBackQueue {
+    Node *FindMid(Node * slow,Node*tail){
+        Node*fast=slow->next;
+        while((fast)&&(fast->next!=tail)&&(fast->next)){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+return slow;
+    }
+public:
+Node*head,*tail;
+int size;
+    FrontMiddleBackQueue() {
+        head=new Node(0);
+        tail=new Node(0);
+        tail->prev=head;
+        head->next=tail;
+        size=0;
+        
+    }
+    
+    void pushFront(int val) {
+        Node *temp=head->next;
+        Node *newNode=new Node(val);
+        head->next=newNode;
+        newNode->next=temp;
+        temp->prev=newNode;
+        newNode->prev=head;
+        size++;
+    }
+    
+    void pushMiddle(int val) {
+        if(!(size)){
+            pushFront(val);
+            return;
+        }
+        Node *temp=head->next;
+       Node*mid= FindMid(temp,tail);
+       Node * x=mid->next;
+       Node *y=mid->prev;
+       Node *newNode=new Node(val);
+       if(size%2){
+             y->next=newNode;
+             newNode->prev=y;
+             newNode->next=mid;
+             mid->prev=newNode;
+       }
+       else{
+           mid->next=newNode;
+           newNode->prev=mid;
+           newNode->next=x;
+           x->prev=newNode;
+       }
+       size++;
+
+    }
+    
+    void pushBack(int val) {
+        Node *temp=tail->prev;
+        Node*newNode=new Node(val);
+        newNode->next=tail;
+        tail->prev=newNode;
+        newNode->prev=temp;
+        temp->next=newNode;
+        size++;
+    }
+    
+    int popFront() {
+        if(!(size)){
+            return -1;
+        }
+        Node*temp=head->next;
+        int ans=temp->data;
+        head->next=temp->next;
+        temp->next->prev=head;
+        delete temp;
+        size--;
+        return ans;
+
+    }
+    
+    int popMiddle() {
+        if(!size){
+            return -1;
+        }
+        Node *mid=FindMid(head->next,tail);
+      Node*x=mid->next;
+      Node*y=mid->prev;
+      int ans=mid->data;
+      y->next=x;
+      x->prev=y;
+      delete mid;
+      size--;
+      return ans;
+    }
+    
+    int popBack() {
+        if(!(size)){
+            return -1;
+        }
+        Node*temp=tail->prev;
+        int ans=temp->data;
+        tail->prev->prev->next=tail;
+        tail->prev=tail->prev->prev;
+        delete temp;
+        size--;
+        return ans;
+
+    }
+};
+
+/**
+ * Your FrontMiddleBackQueue object will be instantiated and called as such:
+ * FrontMiddleBackQueue* obj = new FrontMiddleBackQueue();
+ * obj->pushFront(val);
+ * obj->pushMiddle(val);
+ * obj->pushBack(val);
+ * int param_4 = obj->popFront();
+ * int param_5 = obj->popMiddle();
+ * int param_6 = obj->popBack();
+ */
+
+
+
+// using doubly LL all operatio in o(1)
+
+struct Node{
+
+    int val;
+    Node * next;
+    Node * prev;
+    
+    Node(int x)
+    {
+        val = x;
+        next = prev = NULL;
+    }
+};
+
+    Node* createNode(int x)
+    {
+        return new Node(x);
+    }
+
+class FrontMiddleBackQueue {
+public:
+    Node * head = NULL;
+    Node * tail = NULL;
+    Node * mid = NULL;
+    int size = 0;
+
+    FrontMiddleBackQueue() {}
+    
+    void pushFront(int val) {
+
+        Node * newNode = createNode(val);
+
+        if(size==0)
+            head = tail = mid = newNode;
+        else
+        {
+            newNode->next = head;
+            newNode->prev = NULL;
+            head->prev = newNode;
+            head = head->prev;
+        }
+
+        size++;
+        if(size%2==0)
+            mid = mid->prev;
+    }
+    
+    void pushMiddle(int val) {
+        Node * newNode = createNode(val);
+        if(size==0)
+            head = tail = mid = newNode;
+        else
+        {
+            if(size%2==0)//even no of elements
+            {
+                newNode->next = mid->next;
+                newNode->prev = mid;
+                mid->next->prev = newNode;
+                mid->next = newNode;
+                mid = mid->next;
+            }
+            else //odd no of elements
+            {
+                newNode->next = mid;
+                newNode->prev = mid->prev;
+                if(mid->prev)
+                    mid->prev->next = newNode;
+                mid->prev = newNode;
+                mid = mid->prev;
+                if(size==1)
+                    head = mid;
+            }
+        }
+        size++;
+    }
+    
+    void pushBack(int val) {
+        Node * newNode = createNode(val);
+        if(size==0)
+            head = tail = mid = newNode;
+        
+        else
+        {
+            newNode->prev = tail;
+            newNode->next = NULL;
+            tail->next = newNode;
+            tail = tail->next;
+        }
+        size++;
+        if(size%2!=0 && size!=1)
+            mid = mid->next;
+    }
+    
+    int popFront() {
+
+        if(size==0) return -1;
+
+        int ans = head->val;
+        Node * toDel = head;;
+        if(size==1)
+        {
+            head = mid = tail = NULL;
+        }
+        else
+        {
+            head->next->prev = NULL;
+            head = head->next;
+            if(size%2==0)
+                mid = mid->next;
+        }
+        delete toDel;
+        size--;
+        return ans;
+    }
+    
+    int popMiddle() {
+        if(size==0) return -1;
+
+        int ans = mid->val;
+        Node * toDel = mid;
+        if(size==1)
+        {
+            head = mid = tail = NULL;
+        }
+        else
+        {
+            mid->next->prev = mid->prev;
+            if(mid->prev)
+                mid->prev->next = mid->next;
+
+            if(size%2!=0) //odd no of elements
+                mid = mid->prev;
+            else
+                mid = mid->next;
+
+            if(size==2)
+                head = mid;
+
+        }
+        delete toDel;
+        size--;
+        return ans;
+    }
+    
+    int popBack() {
+
+        if(size==0) return -1;
+
+        int ans = tail->val;
+        Node *toDel = tail;
+        
+        if(size==1)
+            head = mid = tail = NULL;
+        else
+        {
+            tail->prev->next = NULL;
+            tail = tail->prev;
+            if(size%2!=0)
+                mid = mid->prev;
+            
+        }
+        delete toDel;
+        size--;
+        return ans;
+    }
+};
+
+/**
+ * Your FrontMiddleBackQueue object will be instantiated and called as such:
+ * FrontMiddleBackQueue* obj = new FrontMiddleBackQueue();
+ * obj->pushFront(val);
+ * obj->pushMiddle(val);
+ * obj->pushBack(val);
+ * int param_4 = obj->popFront();
+ * int param_5 = obj->popMiddle();
+ * int param_6 = obj->popBack();
+ */
